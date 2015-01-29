@@ -5,9 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
-import android.content.CursorLoader;
-import android.content.Loader;
+import android.content.*;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -40,19 +38,33 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+    private static final String USERNAME = "user";
+    private static final String PASSWORD = "pass";
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+
+    public void login(View view) {
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+        boolean yay;
+        Intent intent;
+        yay = email == USERNAME && password == PASSWORD;
+        if (yay) {
+            intent = new Intent(this, LoginSuccessful.class);
+        } else {
+            intent = new Intent(this, LoginFail.class);
+        }
+        startActivity(intent);
+        //attemptLogin();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +72,7 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = (EditText) findViewById(R.id.username);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -76,12 +88,23 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        /*mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                String email = mEmailView.getText().toString();
+                String password = mPasswordView.getText().toString();
+                boolean yay = false;
+                for (String credential : DUMMY_CREDENTIALS) {
+                    String[] pieces = credential.split(":");
+                    if (pieces[0].equals(email)) {
+                        // Account exists, return true if the password matches.
+                        yay = pieces[1].equals(password);
+                    }
+                }
+
+                //attemptLogin();
             }
-        });
+        });*/
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -147,12 +170,12 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return true;
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return true;
     }
 
     /**
@@ -242,7 +265,7 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
                 new ArrayAdapter<String>(Login.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+      //mEmailView.setAdapter(adapter);
     }
 
     /**
@@ -270,13 +293,13 @@ public class Login extends Activity implements LoaderCallbacks<Cursor> {
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+           /* for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
-            }
+            }*/
 
             // TODO: register the new account here.
             return true;
