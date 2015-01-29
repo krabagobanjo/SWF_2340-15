@@ -211,7 +211,7 @@
     <string name="accept">Accept</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Sign in</string>
     <string name="action_sign_in_short">Sign in</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
@@ -255,15 +255,16 @@
     <eat-comment/>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="login_failure">YOU FAIL!!!</string>
+    <string name="login_success">YOU WIN!!!!</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
-    <string name="error_field_required">This field is required</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_username">Username</string>
+    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="return_to_login">Go Back to Login</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
@@ -273,8 +274,8 @@
     <string name="title_activity_login">Sign in</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_login_fail">LoginFail</string>
-    <string name="title_activity_login_successful">LoginSuccessful</string>
+    <string name="title_activity_login_fail">Login Failed</string>
+    <string name="title_activity_login_successful">Login Successful</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

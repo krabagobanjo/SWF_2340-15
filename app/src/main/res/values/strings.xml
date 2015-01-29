@@ -2,9 +2,12 @@
 <resources>
 
     <string name="app_name">Shopping With Friends</string>
-    <string name="title_activity_login_successful">LoginSuccessful</string>
+    <string name="title_activity_login_successful">Login Successful</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_login_fail">LoginFail</string>
+    <string name="title_activity_login_fail">Login Failed</string>
+    <string name="login_failure">YOU FAIL!!!</string>
+    <string name="login_success">YOU WIN!!!!</string>
+    <string name="return_to_login">Go Back to Login</string>
 
 </resources>
