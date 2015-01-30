@@ -264,6 +264,7 @@
     <string name="prompt_username">Username</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="register">Register</string>
     <string name="return_to_login">Go Back to Login</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/admob_strings.xml -->
     <eat-comment/>
@@ -276,6 +277,7 @@
     <eat-comment/>
     <string name="title_activity_login_fail">Login Failed</string>
     <string name="title_activity_login_successful">Login Successful</string>
+    <string name="title_activity_main">MainActivity</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

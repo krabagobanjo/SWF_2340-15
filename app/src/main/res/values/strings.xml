@@ -9,5 +9,7 @@
     <string name="login_failure">YOU FAIL!!!</string>
     <string name="login_success">YOU WIN!!!!</string>
     <string name="return_to_login">Go Back to Login</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="register">Register</string>
 
 </resources>

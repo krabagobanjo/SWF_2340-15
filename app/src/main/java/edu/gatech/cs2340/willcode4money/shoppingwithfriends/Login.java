@@ -1,32 +1,10 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.*;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
@@ -45,8 +23,6 @@ public class Login extends Activity {
     // UI references.
     private EditText mUserView;
     private EditText mPasswordView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +50,10 @@ public class Login extends Activity {
             intent = new Intent(this, LoginFail.class);
         }
         startActivity(intent);
+    }
+
+    public void cancel(View view) {
+        finish();
     }
 }
 

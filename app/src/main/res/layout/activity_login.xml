@@ -62,6 +62,17 @@
                 android:textStyle="bold"
                 android:onClick="login"/>
 
+            <Button
+                style="?android:textAppearanceSmall"
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Cancel"
+                android:textStyle="bold"
+                android:onClick="cancel"
+                />
+
         </LinearLayout>
     </ScrollView>
 
