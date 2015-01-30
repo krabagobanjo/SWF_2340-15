@@ -253,8 +253,6 @@
     <string name="decline">Decline</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="login_failure">YOU FAIL!!!</string>
     <string name="login_success">YOU WIN!!!!</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->

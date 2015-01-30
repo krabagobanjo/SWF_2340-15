@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.Login"
-            android:label="@string/app_name" >
+            android:label="@string/title_activity_login" >
         </activity>
         <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.LoginSuccessful"
@@ -37,7 +37,7 @@
         <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_main"
+            android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
