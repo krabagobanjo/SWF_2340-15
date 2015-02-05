@@ -54,6 +54,7 @@ public class Register extends Activity {
                 infoTextView.setText("That username already exists");
                 usernameEditText.setText("");
                 passwordEditText.setText("");
+                passwordConfirmEditText.setText("");
             }
         } else {
             infoTextView.setText("There was a mismatch in the passwords");
