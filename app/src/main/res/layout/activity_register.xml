@@ -22,6 +22,20 @@
         android:imeOptions="actionUnspecified"
         android:inputType="text"
         android:maxLines="1"
+        android:password="true"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/passwordConfirmET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:imeActionId="@+id/register"
+        android:imeActionLabel="@string/register"
+        android:imeOptions="actionUnspecified"
+        android:inputType="text"
+        android:maxLines="1"
+        android:password="true"
         android:singleLine="true" />
 
     <Button
