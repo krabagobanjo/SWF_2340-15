@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.Map;
+
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
@@ -13,16 +15,10 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
  */
 public class Login extends Activity {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String USERNAME = "user";
-    private static final String PASSWORD = "pass";
-
     // UI references.
     private EditText mUserView;
     private EditText mPasswordView;
+    private Map<String, String> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +28,16 @@ public class Login extends Activity {
         // Set up the login form.
         mUserView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
+
+        users = ((MyApplication) this.getApplication()).getUsers();
     }
 
     public void login(View view) {
         String username = mUserView.getText().toString();
         String password = mPasswordView.getText().toString();
-        boolean yay;
         Intent intent;
 
-        yay = username.equals(USERNAME);
-        if (yay) {
-            yay = password.equals(PASSWORD);
-        }
-        if (yay) {
+        if (users.containsKey(username) && users.get(username).equals(password)) {
             intent = new Intent(this, LoginSuccessful.class);
         } else {
             intent = new Intent(this, LoginFail.class);
