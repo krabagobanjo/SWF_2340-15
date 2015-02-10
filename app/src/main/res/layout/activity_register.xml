@@ -13,6 +13,26 @@
         android:singleLine="true" />
 
     <EditText
+        android:id="@+id/nameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/emailText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prompt_email"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
         android:id="@+id/passwordET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

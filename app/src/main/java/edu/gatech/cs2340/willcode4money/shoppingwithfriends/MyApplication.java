@@ -9,13 +9,13 @@ import java.util.Map;
  * Created by JakeWilliams on 2/5/2015.
  */
 public class MyApplication extends Application {
-    private Map<String, String> users = new HashMap<String, String>();
+    private Map<String, User> users = new HashMap<String, User>();
 
-    public Map<String, String> getUsers() {
+    public Map<String, User> getUsers() {
         return users;
     }
 
-    public void setUsers(Map<String, String> users) {
+    public void setUsers(Map<String, User> users) {
         this.users = users;
     }
 }

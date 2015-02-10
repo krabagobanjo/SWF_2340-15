@@ -211,8 +211,8 @@
     <string name="accept">Accept</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
-    <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="action_sign_in_short">Sign In</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">Shopping With Friends</string>
@@ -258,6 +258,7 @@
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
     <string name="prompt_email">Email</string>
+    <string name="prompt_name">Name</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_username">Username</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
@@ -270,7 +271,7 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Log In</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="title_activity_login_fail">Login Failed</string>
