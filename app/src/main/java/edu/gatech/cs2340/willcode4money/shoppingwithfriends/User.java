@@ -34,10 +34,12 @@ public class User {
 
     public void addFriend(User friend) {
         this.friends.add(friend);
+        friend.friends.add(this);
     }
 
     public void removeFriend(User friend) {
         this.friends.remove(friend);
+        friend.friends.remove(this);
     }
 
     public String getName() {

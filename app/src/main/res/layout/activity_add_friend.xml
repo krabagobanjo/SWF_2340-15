@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
+        android:text="Shopping With Friends"
+        android:id="@+id/programHeader"
+        android:layout_gravity="center_horizontal|top"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:textColor="#000000"
+        android:autoText="false" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:text="Email Address" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Friend"
+        android:id="@+id/button4"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
