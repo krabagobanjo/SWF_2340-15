@@ -1,9 +1,19 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases;
 
+import android.app.Application;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.MyApplication;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
 /**
  * An SQLite database helper that allows the application to save and retrieve user information.
@@ -54,17 +64,86 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
 
     }
 
-    public void saveUser(User user) {
+    public void saveUsers(Application application) {
+        Map<String, User> users = ((MyApplication) application).getUsers();
         SQLiteDatabase db = this.getWritableDatabase();
+        for (User user : users.values()) {
+            this.saveUser(db, user);
+        }
+        db.close();
+    }
+
+    private void saveUser(SQLiteDatabase db, User user) {
+        //Save friends list as comma-separated string of usernames
         List<User> friends = user.getFriends();
         StringBuilder friendsList = new StringBuilder();
         for (User friend : friends) {
             friendsList.append(friend.getUsername());
+            friendsList.append(",");
         }
+        friendsList.deleteCharAt(friendsList.length() - 1);
         String friendsString = friendsList.toString();
-        //TODO DON'T REALLY NEED AN IDENTIFIER FOR REPORTED AND REQUESTS. JUST USERNAME TO IDENTIFY THEM.
-        //INSERT INTO users(username, password, name, email, friends, reported, requests)...
-        //VALUES(user.getUsername(), user.getPassword(), user.getName(), user.getEmail(), friendsString);
+        db.execSQL("INSERT OR IGNORE INTO " + TABLE_NAME + "(" + COLUMN_NAME_ID + "," + COLUMN_NAME_PASSWORD +
+                "," + COLUMN_NAME_NAME + "," + COLUMN_NAME_EMAIL + "," + COLUMN_NAME_FRIENDS + ") VALUES(" +
+                user.getUsername() + "," + user.getPassword() + "," + user.getName() + "," + user.getEmail() +
+                friendsString);
+    }
+
+    public Map<String, User> readUsers() {
+        Map<String, User> users = new HashMap<String, User>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] proj = {COLUMN_NAME_ID};
+        String sortOrder = COLUMN_NAME_ID + " DESC";
+        Cursor c = db.query(
+                TABLE_NAME, //Name of table
+                proj, //Columns to return
+                null, //No selection criteria
+                null, //see above
+                null, //no grouping
+                null, //no filters
+                sortOrder);
+        boolean hasUsers = c.moveToFirst(); //Make sure there are actually users to retrieve
+        if (!hasUsers) {
+            return users;
+        }
+        do {
+            String username = c.getString(0);
+            users.put(username, this.readUser(db, username));
+        } while(c.moveToNext());
+        this.addFriends(db, users);
+        return users;
+    }
+
+    private User readUser(SQLiteDatabase db, String username) {
+        User user;
+        String password, email, name;
+        List<User> friends = new ArrayList<User>();
+
+        String[] proj = {
+                COLUMN_NAME_PASSWORD,
+                COLUMN_NAME_NAME,
+                COLUMN_NAME_EMAIL,
+                COLUMN_NAME_FRIENDS};
+        String selection = COLUMN_NAME_ID + "=" + "'" + username + "'";
+        String sortOrder = COLUMN_NAME_NAME + " DESC";
+        Cursor c = db.query(
+                TABLE_NAME,
+                proj,
+                selection,
+                null,
+                null,
+                null,
+                sortOrder);
+        c.moveToFirst();
+        password = c.getString(0);
+        name = c.getString(1);
+        email = c.getString(2);
+        user = new User(username, password, email, name);
         db.close();
+        return user;
+    }
+
+    private void addFriends(SQLiteDatabase db, Map<String, User> users) {
+
     }
 }
