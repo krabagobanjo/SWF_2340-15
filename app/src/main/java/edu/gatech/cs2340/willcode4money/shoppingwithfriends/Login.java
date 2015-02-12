@@ -18,7 +18,7 @@ public class Login extends Activity {
     // UI references.
     private EditText mUserView;
     private EditText mPasswordView;
-    private Map<String, String> users;
+    private Map<String, User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class Login extends Activity {
         String password = mPasswordView.getText().toString();
         Intent intent;
 
-        if (users.containsKey(username) && users.get(username).equals(password)) {
+        if (users.containsKey(username) && users.get(username).getPassword().equals(password)) {
             intent = new Intent(this, LoginSuccessful.class);
         } else {
             intent = new Intent(this, LoginFail.class);
