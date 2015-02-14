@@ -209,6 +209,9 @@
     <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/admob_strings.xml -->
     <eat-comment/>
     <string name="accept">Accept</string>
+    <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Settings</string>
     <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
     <string name="action_sign_in">Sign In</string>
@@ -253,6 +256,7 @@
     <string name="decline">Decline</string>
     <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="hello_world">Hello world!</string>
     <string name="login_failure">YOU FAIL!!!</string>
     <string name="login_success">YOU WIN!!!!</string>
     <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
@@ -269,6 +273,9 @@
     <eat-comment/>
     <string name="store_picture_message">"Allow Ad to store image in Picture gallery?"</string>
     <string name="store_picture_title">Save image</string>
+    <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="title_activity_add_friend">addFriend</string>
     <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
     <eat-comment/>
     <string name="title_activity_login">Log In</string>
@@ -277,6 +284,7 @@
     <string name="title_activity_login_fail">Login Failed</string>
     <string name="title_activity_login_successful">Login Successful</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_view_friends">viewFriends</string>
     <!-- From: file:/D:/Kyle%20Rabago-Banjo/My%20Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

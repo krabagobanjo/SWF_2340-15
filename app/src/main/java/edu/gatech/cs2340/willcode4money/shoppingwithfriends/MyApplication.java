@@ -10,6 +10,10 @@ import java.util.Map;
  */
 public class MyApplication extends Application {
     private Map<String, User> users = new HashMap<String, User>();
+    private String currentUser = "";
+
+    public void setCurrentUser(String currentUser) { this.currentUser = currentUser; }
+    public String getCurrentUser() { return currentUser; }
 
     public Map<String, User> getUsers() {
         return users;

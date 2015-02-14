@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="edu.gatech.cs2340.willcode4money.shoppingwithfriends.MainScreen">
 
     <TextView
         android:layout_width="314dp"
@@ -20,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="View Friends"
+        android:onClick="viewFriends"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal" />
 
@@ -27,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Friends"
+        android:onClick="addFriends"
         android:id="@+id/button2"
         android:layout_gravity="center_horizontal" />
 
@@ -34,6 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:onClick="logout"
         android:id="@+id/button3"
         android:layout_gravity="center_horizontal" />
 
