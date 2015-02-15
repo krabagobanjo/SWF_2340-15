@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriends.MyApplication;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
 /**
@@ -65,7 +65,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     }
 
     public void saveUsers(Application application) {
-        Map<String, User> users = ((MyApplication) application).getUsers();
+        Map<String, User> users = ((ShoppingWithFriends) application).getUsers();
         SQLiteDatabase db = this.getWritableDatabase();
         for (User user : users.values()) {
             this.saveUser(db, user);

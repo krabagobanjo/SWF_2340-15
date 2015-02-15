@@ -1,11 +1,9 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,7 +12,7 @@ import java.util.Map;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
- * Created by JakeWilliams on 2/5/2015.
+ * Implementation of user registration.
  */
 public class Register extends Activity {
     // UI references.
@@ -25,6 +23,10 @@ public class Register extends Activity {
     private EditText passwordConfirmEditText;
     private TextView infoTextView;
 
+    /**
+     * Initializes the page with text fields and buttons
+     */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -37,6 +39,9 @@ public class Register extends Activity {
         infoTextView = (TextView) findViewById(R.id.infoTV);
     }
 
+    /**
+     * Registers a new user. Fails if the user already exists.
+     */
     public void register(View view) {
         String name = nameEditText.getText().toString();
         String email = emailEditText.getText().toString();
@@ -44,13 +49,14 @@ public class Register extends Activity {
         String password = passwordEditText.getText().toString();
         String passwordConfirm = passwordConfirmEditText.getText().toString();
 
-        Map<String, User> tempUsers = ((MyApplication) this.getApplication()).getUsers();
+        Map<String, User> tempUsers = ((ShoppingWithFriends) this.getApplication()).getUsers();
         if (password.equals(passwordConfirm)) {
             if (!tempUsers.containsKey(username)) {
-                tempUsers.put(username, new User(username, password, email, name));
-                ((MyApplication) this.getApplication()).setUsers(tempUsers);
+                ((ShoppingWithFriends) this.getApplication()).addUser(new User(username, password, email, name));
                 infoTextView.setText("Success");
+                //Remove cancel button from screen
                 findViewById(R.id.cancelBtn).setVisibility(View.INVISIBLE);
+                //Wait 1 second before returning back
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -73,7 +79,7 @@ public class Register extends Activity {
     }
 
     /**
-     * returns to the previous activity
+     * Returns to the previous activity
      */
     public void cancel(View view) {
         finish();
