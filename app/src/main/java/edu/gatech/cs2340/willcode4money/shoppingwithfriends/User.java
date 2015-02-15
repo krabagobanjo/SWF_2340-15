@@ -26,6 +26,8 @@ public class User {
         this.email = email;
         this.name = name;
         this.ratings = new ArrayList<Integer>();
+        this.salesReported = new ArrayList<SaleReport>();
+        this.salesReceived = new ArrayList<SaleReport>();
         this.friends = new ArrayList<User>();
     }
 
@@ -86,6 +88,8 @@ public class User {
         return salesReceived;
     }
 
+    public int getNumSaleReports() { return salesReported.size(); }
+
     public void setSalesReceived(List<SaleReport> salesReceived) {
         this.salesReceived = salesReceived;
     }
@@ -99,7 +103,8 @@ public class User {
         for (Integer rating : ratings) {
             total += rating;
         }
-        return ((double) total) / ratings.size();
+        if (total == 0) return 0;
+        else return ((double) total) / ratings.size();
     }
 
     public String getEmail() {
@@ -127,5 +132,9 @@ public class User {
     @Override
     public int hashCode() {
         return username.hashCode();
+    }
+
+    public String toString() {
+        return name + "\n" + email + "\n" + this.getRating() + "\n" + this.getNumSaleReports() + "\n";
     }
 }
