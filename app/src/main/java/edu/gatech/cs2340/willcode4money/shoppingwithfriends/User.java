@@ -14,6 +14,7 @@ public class User {
     private String password;
     private String email;
     private List<Integer> ratings;
+    private boolean authenticated;
 
     private List<SaleRequest> requests;
     private List<SaleReport> salesReported;
@@ -28,7 +29,10 @@ public class User {
         this.friends = new ArrayList<User>();
     }
 
-    /**
+    public boolean getAuth() { return authenticated; }
+    public void setAuth(boolean auth) { authenticated = auth; }
+
+	/**
      * Retrieves the list of friends of a user
      * @return the friends list
      */

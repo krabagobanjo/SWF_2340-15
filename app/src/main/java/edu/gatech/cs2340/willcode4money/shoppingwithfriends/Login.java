@@ -47,7 +47,9 @@ public class Login extends Activity {
         Intent intent;
 
         if (users.containsKey(username) && users.get(username).getPassword().equals(password)) {
-            intent = new Intent(this, LoginSuccessful.class);
+            intent = new Intent(this, MainScreen.class);
+            ((MyApplication) this.getApplication()).setCurrentUser(username);
+            ((MyApplication) this.getApplication()).getUsers().get(username).setAuth(true);
         } else {
             intent = new Intent(this, LoginFail.class);
         }
