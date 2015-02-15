@@ -135,6 +135,6 @@ public class User {
     }
 
     public String toString() {
-        return name + "\n" + email + "\n" + this.getRating() + "\n" + this.getNumSaleReports() + "\n";
+        return name + "\n" + email + "\n" + this.getRating() + "\n" + this.getNumSaleReports();
     }
 }
