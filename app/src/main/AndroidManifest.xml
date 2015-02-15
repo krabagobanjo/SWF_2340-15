@@ -34,12 +34,6 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.LoginFail"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_login_fail"
-            android:theme="@style/AppTheme" >
-        </activity>
-        <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.addFriend"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_add_friend"

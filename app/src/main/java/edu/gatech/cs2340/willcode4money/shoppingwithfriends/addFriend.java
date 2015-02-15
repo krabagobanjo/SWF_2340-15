@@ -16,8 +16,8 @@ public class addFriend extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friend);
-        currUser = ((MyApplication) this.getApplication()).getCurrentUser();
-        if (!((MyApplication) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+        currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
+        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
     public void addFriend(View view) {
@@ -25,13 +25,13 @@ public class addFriend extends Activity {
         EditText etxt2 = (EditText) findViewById(R.id.editText2);
         String name = etxt1.getText().toString();
         String email = etxt2.getText().toString();
-        User[] users = new User[((MyApplication) this.getApplication()).getUsers().size()];
-        users = ((MyApplication) this.getApplication()).getUsers().values().toArray(users);
-        User cUser = ((MyApplication) this.getApplication()).getUsers().get(currUser);
+        User[] users = new User[((ShoppingWithFriends) this.getApplication()).getUsers().size()];
+        users = ((ShoppingWithFriends) this.getApplication()).getUsers().values().toArray(users);
+        User cUser = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser);
         boolean foundFriend = false;
         for (int i = 0; i < users.length; i++) {
             if (users[i].getEmail().equals(email) && users[i].getName().equals(name) && !users[i].equals(cUser)) {
-                ((MyApplication) this.getApplication()).getUsers().get(currUser).addFriend(users[i]);
+                ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).addFriend(users[i]);
                 foundFriend = true;
                 break;
             }

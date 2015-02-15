@@ -12,6 +12,8 @@ public class ShoppingWithFriends extends Application {
     //Contains the registered users in the application
     private Map<String, User> users = new HashMap<String, User>();
 
+    private String currentUser;
+
     /**
      * Gets a list of registered users
      * @return the list of registered users
@@ -34,5 +36,21 @@ public class ShoppingWithFriends extends Application {
      */
     public void addUser(User user) {
         this.users.put(user.getUsername(), user);
+    }
+
+    /**
+     * Keeps track of the user that is currently logged in
+     * @param username the username of the currently logged-in user
+     */
+    public void setCurrentUser(String username) {
+        currentUser = username;
+    }
+
+    /**
+     * Returns the user that's currently logged in
+     * @return the username of the current user
+     */
+    public String getCurrentUser() {
+        return currentUser;
     }
 }

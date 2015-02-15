@@ -10,8 +10,8 @@ public class viewFriends extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
-        currUser = ((MyApplication) this.getApplication()).getCurrentUser();
-        if (!((MyApplication) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+        currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
+        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
 

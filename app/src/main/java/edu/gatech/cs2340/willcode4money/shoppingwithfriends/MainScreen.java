@@ -19,13 +19,13 @@ public class MainScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        currUser = ((MyApplication) this.getApplication()).getCurrentUser();
-        if (!((MyApplication) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+        currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
+        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
     public void logout(View view) {
-        ((MyApplication) this.getApplication()).getUsers().get(currUser).setAuth(false);
-        ((MyApplication) this.getApplication()).setCurrentUser("");
+        ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).setAuth(false);
+        ((ShoppingWithFriends) this.getApplication()).setCurrentUser("");
         finish();
     }
 
