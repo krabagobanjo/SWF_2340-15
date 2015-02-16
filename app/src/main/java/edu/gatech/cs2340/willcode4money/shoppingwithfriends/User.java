@@ -178,6 +178,11 @@ public class User {
         return email;
     }
 
+    /**
+     * Returns the full list of ratings
+     * @return a list of ratings
+     */
+    public List<Integer> getRatingsList() { return ratings; }
 
     //Setters used only for loading in data from saved information. For all other uses, use adders
     public void setRatings(List<Integer> ratings) {

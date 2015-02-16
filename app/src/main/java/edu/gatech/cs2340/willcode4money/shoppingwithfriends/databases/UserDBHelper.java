@@ -32,12 +32,13 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     private static final String COLUMN_NAME_PASSWORD = "password";
     private static final String COLUMN_NAME_EMAIL = "email";
     private static final String COLUMN_NAME_FRIENDS = "friends";
+    private static final String COLUMN_NAME_RATINGS = "ratings";
 
     //CREATE TABLE users(_ID TEXT PRIMARY KEY, username TEXT UNIQUE, password TEXT, name TEXT, email TEXT,...
-    //friends TEXT);
+    //friends TEXT, ratings TEXT);
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + _ID + " TEXT PRIMARY KEY," +
             COLUMN_NAME_ID + " TEXT UNIQUE," + COLUMN_NAME_PASSWORD + " TEXT," + COLUMN_NAME_NAME + " TEXT," +
-            COLUMN_NAME_EMAIL + " TEXT," + COLUMN_NAME_FRIENDS + " TEXT" + ")";
+            COLUMN_NAME_EMAIL + " TEXT," + COLUMN_NAME_FRIENDS + " TEXT" + COLUMN_NAME_RATINGS + "TEXT" + ")";
 
     //DROP TABLE IF EXISTS users;
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -83,10 +84,19 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         }
         friendsList.deleteCharAt(friendsList.length() - 1);
         String friendsString = friendsList.toString();
+        //Save ratings as a comma-separated string of integers
+        List<Integer> ratings = user.getRatingsList();
+        StringBuilder rate = new StringBuilder();
+        for (Integer rating : ratings) {
+            rate.append(rating);
+            rate.append(",");
+        }
+        rate.deleteCharAt(rate.length() - 1);
+        String ratingString = rate.toString();
         db.execSQL("INSERT OR IGNORE INTO " + TABLE_NAME + "(" + COLUMN_NAME_ID + "," + COLUMN_NAME_PASSWORD +
-                "," + COLUMN_NAME_NAME + "," + COLUMN_NAME_EMAIL + "," + COLUMN_NAME_FRIENDS + ") VALUES(" +
-                user.getUsername() + "," + user.getPassword() + "," + user.getName() + "," + user.getEmail() +
-                friendsString);
+                "," + COLUMN_NAME_NAME + "," + COLUMN_NAME_EMAIL + "," + COLUMN_NAME_FRIENDS + "," + COLUMN_NAME_RATINGS +
+                ") VALUES(" + user.getUsername() + "," + user.getPassword() + "," + user.getName() + "," + user.getEmail() +
+                friendsString + "," + ratingString);
     }
 
     public Map<String, User> readUsers() {
@@ -123,7 +133,8 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
                 COLUMN_NAME_PASSWORD,
                 COLUMN_NAME_NAME,
                 COLUMN_NAME_EMAIL,
-                COLUMN_NAME_FRIENDS};
+                COLUMN_NAME_FRIENDS,
+                COLUMN_NAME_RATINGS};
         String selection = COLUMN_NAME_ID + "=" + "'" + username + "'";
         String sortOrder = COLUMN_NAME_NAME + " DESC";
         Cursor c = db.query(
@@ -144,6 +155,10 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     }
 
     private void addFriends(SQLiteDatabase db, Map<String, User> users) {
+
+    }
+
+    private void addRatings(SQLiteDatabase db, Map<String, User> users) {
 
     }
 }
