@@ -53,6 +53,7 @@ public class Login extends Activity {
             ((ShoppingWithFriends) this.getApplication()).setCurrentUser(username);
             ((ShoppingWithFriends) this.getApplication()).getUsers().get(username).setAuth(true);
             startActivity(intent);
+            this.finish();
         } else {
             infoTextView.setText("Error: Unknown username/password combination!");
             infoTextView.setTextColor(Color.RED);
