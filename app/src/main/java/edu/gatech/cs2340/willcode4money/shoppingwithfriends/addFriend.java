@@ -42,14 +42,13 @@ public class addFriend extends Activity {
         if (foundFriend) {
             Toast.makeText(getApplicationContext(), "Friend Added",
                     Toast.LENGTH_LONG).show();
-            etxt1.setText("");
-            etxt2.setText("");
         }
         else {
             Toast.makeText(getApplicationContext(), "Couldn't find user",
                     Toast.LENGTH_LONG).show();
         }
-
+        etxt1.setText("");
+        etxt2.setText("");
     }
 
 }

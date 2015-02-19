@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Map;
 
@@ -36,7 +37,6 @@ public class Register extends Activity {
         usernameEditText = (EditText) findViewById(R.id.usernameET);
         passwordEditText = (EditText) findViewById(R.id.passwordET);
         passwordConfirmEditText = (EditText) findViewById(R.id.passwordConfirmET);
-        infoTextView = (TextView) findViewById(R.id.infoTV);
     }
 
     /**
@@ -54,7 +54,8 @@ public class Register extends Activity {
             if (!tempUsers.containsKey(username)) {
                 tempUsers.put(username, new User(username, password, email, name));
                 ((ShoppingWithFriends) this.getApplication()).setUsers(tempUsers);
-                infoTextView.setText("Success");
+                Toast.makeText(getApplicationContext(), "Success",
+                        Toast.LENGTH_LONG).show();
                 //Remove cancel button from screen
                 findViewById(R.id.cancelBtn).setVisibility(View.INVISIBLE);
                 //Wait 1 second before returning back
@@ -65,7 +66,8 @@ public class Register extends Activity {
                     }
                 }, 1000);
             } else {
-                infoTextView.setText("That username already exists");
+                Toast.makeText(getApplicationContext(), "That username already exists",
+                        Toast.LENGTH_LONG).show();
                 nameEditText.setText("");
                 emailEditText.setText("");
                 usernameEditText.setText("");
@@ -73,7 +75,8 @@ public class Register extends Activity {
                 passwordConfirmEditText.setText("");
             }
         } else {
-            infoTextView.setText("There was a mismatch in the passwords");
+            Toast.makeText(getApplicationContext(), "There was a mismatch in the passwords",
+                    Toast.LENGTH_LONG).show();
             passwordEditText.setText("");
             passwordConfirmEditText.setText("");
         }
