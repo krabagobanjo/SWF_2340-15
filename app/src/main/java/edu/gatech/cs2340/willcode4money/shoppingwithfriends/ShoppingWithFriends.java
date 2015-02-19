@@ -12,7 +12,8 @@ public class ShoppingWithFriends extends Application {
     //Contains the registered users in the application
     private Map<String, User> users = new HashMap<String, User>();
 
-    private String currentUser;
+    //The username of the currently logged-in user
+    private String currentUser = "";
 
     /**
      * Gets a list of registered users
@@ -43,7 +44,7 @@ public class ShoppingWithFriends extends Application {
      * @param username the username of the currently logged-in user
      */
     public void setCurrentUser(String username) {
-        currentUser = username;
+        this.currentUser = username;
     }
 
     /**

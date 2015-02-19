@@ -49,7 +49,6 @@ public class Register extends Activity {
         String password = passwordEditText.getText().toString();
         String passwordConfirm = passwordConfirmEditText.getText().toString();
 
-        Map<String, User> tempUsers = ((ShoppingWithFriends) this.getApplication()).getUsers();
         if (password.equals(passwordConfirm)) {
             if (!tempUsers.containsKey(username)) {
                 ((ShoppingWithFriends) this.getApplication()).addUser(new User(username, password, email, name));

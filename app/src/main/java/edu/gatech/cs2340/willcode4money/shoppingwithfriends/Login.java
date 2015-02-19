@@ -69,6 +69,3 @@ public class Login extends Activity {
         finish();
     }
 }
-
-
-

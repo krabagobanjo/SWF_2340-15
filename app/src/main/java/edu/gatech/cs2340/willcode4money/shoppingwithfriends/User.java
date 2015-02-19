@@ -26,13 +26,24 @@ public class User {
         this.email = email;
         this.name = name;
         this.ratings = new ArrayList<Integer>();
+        this.salesReported = new ArrayList<SaleReport>();
+        this.salesReceived = new ArrayList<SaleReport>();
         this.friends = new ArrayList<User>();
     }
 
+    /**
+     * Returns whether or not the user has authenticated
+     * @return true if the user should be logged in. False if not
+     */
     public boolean getAuth() { return authenticated; }
+
+    /**
+     * Sets whether or not the user has authenticated
+     * @param auth true if the user should be logged in
+     */
     public void setAuth(boolean auth) { authenticated = auth; }
 
-	/**
+    /**
      * Retrieves the list of friends of a user
      * @return the friends list
      */
@@ -150,6 +161,12 @@ public class User {
     }
 
     /**
+     * Returns the number of sales reported by this user
+     * @return number of sale reports
+     */
+    public int getNumSaleReports() { return salesReported.size(); }
+
+    /**
      * Adds a new rating to this user
      * @param rating the rating to add
      */
@@ -205,7 +222,6 @@ public class User {
         this.salesReceived = received;
     }
 
-
     /**
      * Determines if two users are the same by using their usernames
      * @param o the user to compare to
@@ -232,5 +248,9 @@ public class User {
     @Override
     public int hashCode() {
         return username.hashCode();
+    }
+
+    public String toString() {
+        return name + "\n" + email + "\n" + this.getRating() + "\n" + this.getNumSaleReports();
     }
 }
