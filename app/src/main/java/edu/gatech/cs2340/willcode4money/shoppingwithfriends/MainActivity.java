@@ -8,7 +8,9 @@ import android.view.View;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
-
+/**
+ * The main splash screen for Shopping with Friends
+ */
 public class MainActivity extends Activity {
 
     @Override
@@ -17,6 +19,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Either logs in or registers a new user, depending on the button pressed
+     * @param view the button that was pressed
+     */
     public void buttonPressed(View view) {
         if (view == findViewById(R.id.sign_in)) {
             startActivity(new Intent(this, Login.class));

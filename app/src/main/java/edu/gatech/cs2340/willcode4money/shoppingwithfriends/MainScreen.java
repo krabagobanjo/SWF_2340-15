@@ -1,8 +1,5 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
-
-
-
 import android.app.Activity;
 import android.content.Intent;
 
@@ -12,20 +9,24 @@ import android.view.View;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
- * Created by Kyle on 2/12/2015.
+ * The home screen after login.
  */
 public class MainScreen extends Activity {
     private String currUser;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        currUser = ((MyApplication) this.getApplication()).getCurrentUser();
-        if (!((MyApplication) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+        currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
+        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
+    /**
+     * Logs the user out of the application.
+     */
     public void logout(View view) {
-        ((MyApplication) this.getApplication()).getUsers().get(currUser).setAuth(false);
-        ((MyApplication) this.getApplication()).setCurrentUser("");
+        ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).setAuth(false);
+        ((ShoppingWithFriends) this.getApplication()).setCurrentUser("");
         finish();
     }
 

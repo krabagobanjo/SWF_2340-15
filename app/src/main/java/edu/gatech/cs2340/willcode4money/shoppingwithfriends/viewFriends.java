@@ -7,16 +7,19 @@ import android.widget.ListView;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
+/**
+ * The user's friends list.
+ */
 public class viewFriends extends Activity {
     private String currUser;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
-        currUser = ((MyApplication) this.getApplication()).getCurrentUser();
-        if (!((MyApplication) this.getApplication()).getUsers().get(currUser).getAuth()) {
+        currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
+        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) {
             finish();
         }
-        Object[] friendsArray = ((MyApplication) this.getApplication()).getUsers().get(currUser).getFriends().toArray();
+        Object[] friendsArray = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().toArray();
         String[] friendsList = new String[friendsArray.length];
         for (int i=0; i<friendsArray.length; i++) {
             friendsList[i] = friendsArray[i].toString();
@@ -25,6 +28,4 @@ public class viewFriends extends Activity {
         ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(adapter);
     }
-
-
 }
