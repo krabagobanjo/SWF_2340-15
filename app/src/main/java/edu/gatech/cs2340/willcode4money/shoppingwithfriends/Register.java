@@ -72,6 +72,7 @@ public class Register extends Activity {
                 usernameEditText.setText("");
                 passwordEditText.setText("");
                 passwordConfirmEditText.setText("");
+                usernameEditText.requestFocus();
             }
         } else {
             Toast.makeText(getApplicationContext(), "There was a mismatch in the passwords",

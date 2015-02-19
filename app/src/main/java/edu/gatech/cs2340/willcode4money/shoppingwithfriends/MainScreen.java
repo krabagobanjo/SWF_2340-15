@@ -30,9 +30,9 @@ public class MainScreen extends Activity {
         finish();
     }
 
-    public void viewFriends(View view) { startActivity(new Intent(this, viewFriends.class)); }
+    public void viewFriends(View view) { startActivity(new Intent(this, ViewFriends.class)); }
 
-    public void addFriends(View view) { startActivity(new Intent(this, addFriend.class)); }
+    public void addFriends(View view) { startActivity(new Intent(this, AddFriend.class)); }
 
 
 }
