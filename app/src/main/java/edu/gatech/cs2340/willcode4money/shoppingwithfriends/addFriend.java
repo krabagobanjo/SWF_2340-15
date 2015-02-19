@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
-public class addFriend extends Activity {
+public class AddFriend extends Activity {
     private String currUser;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,7 @@ public class addFriend extends Activity {
         }
         etxt1.setText("");
         etxt2.setText("");
+        etxt1.requestFocus();
     }
 
 }

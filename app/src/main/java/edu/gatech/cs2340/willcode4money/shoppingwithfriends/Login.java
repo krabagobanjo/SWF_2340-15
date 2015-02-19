@@ -60,6 +60,7 @@ public class Login extends Activity {
             infoTextView.setVisibility(View.VISIBLE);
             mUserView.setText("");
             mPasswordView.setText("");
+            mUserView.requestFocus();
         }
     }
 

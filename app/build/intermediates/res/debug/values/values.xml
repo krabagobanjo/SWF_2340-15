@@ -212,13 +212,10 @@
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
-    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
-    <eat-comment/>
     <string name="action_sign_in">Sign In</string>
     <string name="action_sign_in_short">Sign In</string>
-    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
     <string name="app_name">Shopping With Friends</string>
+    <string name="cancel">Cancel</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/common_strings.xml -->
     <eat-comment/>
     <string name="common_android_wear_notification_needs_update_text">An application requires an update to the Android Wear app.</string>
@@ -256,17 +253,11 @@
     <string name="decline">Decline</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="hello_world">Hello world!</string>
-    <string name="login_failure">YOU FAIL!!!</string>
-    <string name="login_success">YOU WIN!!!!</string>
-    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
-    <eat-comment/>
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">Email Address</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_password_confirm">Confirm Password</string>
     <string name="prompt_username">Username</string>
-    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
     <string name="register">Register</string>
     <string name="return_to_login">Go Back to Login</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/admob_strings.xml -->
@@ -275,16 +266,10 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_add_friend">addFriend</string>
-    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings_activity_login.xml -->
-    <eat-comment/>
+    <string name="title_activity_add_friend">Add Friend</string>
     <string name="title_activity_login">Log In</string>
-    <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
-    <string name="title_activity_login_fail">Login Failed</string>
-    <string name="title_activity_login_successful">Login Successful</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_view_friends">viewFriends</string>
+    <string name="title_activity_main">Home</string>
+    <string name="title_activity_view_friends">View Friends</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>
