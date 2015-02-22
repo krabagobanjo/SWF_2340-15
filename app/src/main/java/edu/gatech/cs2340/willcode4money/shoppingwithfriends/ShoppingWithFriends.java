@@ -4,6 +4,10 @@ import android.app.Application;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelper;
 
 /**
  * A class to carry information between activities
@@ -14,6 +18,26 @@ public class ShoppingWithFriends extends Application {
 
     //The username of the currently logged-in user
     private String currentUser = "";
+
+    //The database information is saved to and read from
+    UserDBHelper usersDB;
+
+    //Automatically saves information after a set time period
+    Timer saveTimer;
+    private final long AUTOSAVE_PERIOD = 120000L;
+
+    /**
+     * Opens or creates the save-state database and reads in any information.
+     */
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //Multi-thread this
+        usersDB = new UserDBHelper(this);
+        users = usersDB.readUsers();
+        saveTimer = new Timer(true);
+        saveTimer.schedule(new SaveTask(), AUTOSAVE_PERIOD, AUTOSAVE_PERIOD);
+    }
 
     /**
      * Gets a list of registered users
@@ -53,5 +77,17 @@ public class ShoppingWithFriends extends Application {
      */
     public String getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     * Used to repeatedly save application information at regular intervals (an auto-save)
+     */
+    private class SaveTask extends TimerTask {
+        /**
+         * Saves all information about the application to permanent storage
+         */
+        public void run() {
+
+        }
     }
 }

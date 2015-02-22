@@ -52,15 +52,18 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         requestsDBhelper = new RequestsDBHelper(context);
     }
 
+    @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
     }
 
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE);
         onCreate(db);
     }
 
+    @Override
     public void onOpen(SQLiteDatabase db) {
 
     }
@@ -120,7 +123,8 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             String username = c.getString(0);
             users.put(username, this.readUser(db, username));
         } while(c.moveToNext());
-        this.addFriends(db, users);
+        this.readFriends(db, users);
+        this.readRatings(db, users);
         return users;
     }
 
@@ -154,11 +158,11 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         return user;
     }
 
-    private void addFriends(SQLiteDatabase db, Map<String, User> users) {
+    private void readFriends(SQLiteDatabase db, Map<String, User> users) {
 
     }
 
-    private void addRatings(SQLiteDatabase db, Map<String, User> users) {
+    private void readRatings(SQLiteDatabase db, Map<String, User> users) {
 
     }
 }
