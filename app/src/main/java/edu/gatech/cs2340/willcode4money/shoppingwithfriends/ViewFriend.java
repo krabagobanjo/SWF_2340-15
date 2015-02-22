@@ -19,6 +19,8 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
  */
 public class ViewFriend extends Activity {
     private String currUser;
+    private User[] friendsList;
+    private int index;
 
     /**
      * Creates and displays the user's friends list
@@ -30,12 +32,15 @@ public class ViewFriend extends Activity {
         if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) {
             finish();
         }
-        Object[] friendsArray = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().toArray();
-        String[] friendsList = new String[friendsArray.length];
-        for (int i = 0; i < friendsArray.length; i++) {
-            friendsList[i] = friendsArray[i].toString();
+
+        int len = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().size();
+        friendsList = new User[len];
+        String[] listName = new String[len];
+        for (int i = 0; i < len; i++) {
+            friendsList[i] = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().get(i);
+            listName[i] = friendsList[i].getName();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, friendsList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, listName);
         ListView listview = (ListView) findViewById(R.id.friends_list);
         listview.setAdapter(adapter);
         registerForContextMenu(listview);
@@ -44,6 +49,14 @@ public class ViewFriend extends Activity {
             public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
                 TextView clickedFriend = (TextView) view;
                 Toast.makeText(getApplicationContext(), "Friend [" + clickedFriend.getText() + "]", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                index = (int) id;
+                return false;
             }
         });
     }
@@ -59,8 +72,18 @@ public class ViewFriend extends Activity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if(itemId == 1) {startActivity(new Intent(this, detail_Info.class));}
-        Toast.makeText(this, "Item id ["+itemId+"]", Toast.LENGTH_SHORT).show();
+        if(itemId == 1)
+        {
+            Intent intent = new Intent(this, detail_Info.class);
+            intent.putExtra("friend_info",friendsList[index]);
+            startActivity(intent);
+        }
+        if(itemId == 2)
+        {
+            ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).removeFriend(friendsList[index]);
+            finish();
+            startActivity(new Intent(this, ViewFriend.class));
+        }
         return true;
     }
 }

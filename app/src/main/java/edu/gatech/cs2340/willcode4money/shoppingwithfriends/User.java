@@ -1,12 +1,13 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Contains User information needed by the application.
  */
-public class User {
+public class User implements Serializable{
     private List<User> friends;
 
     private String name;
