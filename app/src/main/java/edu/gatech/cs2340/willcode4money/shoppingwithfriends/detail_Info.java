@@ -11,6 +11,10 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
  * Created by Jeongsoo on 2/19/2015.
  */
 public class detail_Info extends Activity {
+
+    /**
+     * Creates and displays the selected friend's detail info
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

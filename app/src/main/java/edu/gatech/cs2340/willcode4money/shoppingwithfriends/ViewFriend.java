@@ -61,6 +61,13 @@ public class ViewFriend extends Activity {
         });
     }
 
+    /**
+     * Creates and displays the contextmenu for options
+     *
+     * @param menu     The context menu that is built.
+     * @param v        The view of the context menu
+     * @param menuInfo Extra info on the context menu
+     */
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -69,6 +76,11 @@ public class ViewFriend extends Activity {
         menu.add(1, 2, 2, "Delete");
     }
 
+    /**
+     * Detect which a item is selected on the context menu.
+     *
+     * @param item The selected item on the context menu.
+     */
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         int itemId = item.getItemId();
