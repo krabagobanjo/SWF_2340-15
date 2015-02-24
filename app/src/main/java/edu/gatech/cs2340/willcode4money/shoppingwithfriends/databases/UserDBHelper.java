@@ -63,11 +63,6 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         onCreate(db);
     }
 
-    @Override
-    public void onOpen(SQLiteDatabase db) {
-
-    }
-
     public void saveUsers(Application application) {
         Map<String, User> users = ((ShoppingWithFriends) application).getUsers();
         SQLiteDatabase db = this.getWritableDatabase();

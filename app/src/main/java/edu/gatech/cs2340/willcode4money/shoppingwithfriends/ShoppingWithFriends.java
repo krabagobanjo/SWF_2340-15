@@ -23,7 +23,7 @@ public class ShoppingWithFriends extends Application {
     UserDBHelper usersDB;
 
     //Automatically saves information after a set time period
-    Timer saveTimer;
+    private Timer saveTimer;
     private final long AUTOSAVE_PERIOD = 120000L;
 
     /**
