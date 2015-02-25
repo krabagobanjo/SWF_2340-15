@@ -34,6 +34,7 @@ public class MainScreen extends Activity {
 
     public void addFriends(View view) { startActivity(new Intent(this, AddFriend.class)); }
 
-    public void makeRequests(View view) { startActivity(new Intent(this, SaleRequest.class)); }
+    public void viewRequests(View view) { startActivity(new Intent(this, ViewItems.class)); }
 
+    public void makeRequests(View view) { startActivity(new Intent(this, SaleRequest.class)); }
 }

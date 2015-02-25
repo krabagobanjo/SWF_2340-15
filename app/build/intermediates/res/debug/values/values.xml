@@ -276,6 +276,7 @@
     <string name="title_activity_main">Home</string>
     <string name="title_activity_sale_request">Sale Request</string>
     <string name="title_activity_view_friends">View Friends</string>
+    <string name="title_activity_view_items">View Items</string>
     <!-- From: file:/C:/Users/Hanbeen/Desktop/school/4.spring2015/cs2340/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

@@ -88,4 +88,10 @@ public class SaleRequest extends Activity {
     public void setMaxPrice(double maxPrice) {
         this.maxPrice = maxPrice;
     }
+
+    @Override
+    public String toString() {
+        String a = getOwner() + ": " + getItem() + " @ $" + getMaxPrice();
+        return a;
+    }
 }

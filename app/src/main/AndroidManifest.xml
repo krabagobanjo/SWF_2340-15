@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ViewFriends"
+            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ViewFriend"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_view_friends"
             android:theme="@style/AppTheme" >
@@ -46,12 +46,19 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
+            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ViewItems"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_view_items"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
