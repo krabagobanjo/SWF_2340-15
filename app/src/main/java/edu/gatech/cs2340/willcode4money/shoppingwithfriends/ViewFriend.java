@@ -10,7 +10,7 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 /**
  * The user's friends list.
  */
-public class ViewFriends extends Activity {
+public class ViewFriend extends Activity {
     private String currUser;
 
     /**

@@ -26,6 +26,7 @@ public class User {
         this.email = email;
         this.name = name;
         this.ratings = new ArrayList<Integer>();
+        this.requests = new ArrayList<SaleRequest>();
         this.salesReported = new ArrayList<SaleReport>();
         this.salesReceived = new ArrayList<SaleReport>();
         this.friends = new ArrayList<User>();
