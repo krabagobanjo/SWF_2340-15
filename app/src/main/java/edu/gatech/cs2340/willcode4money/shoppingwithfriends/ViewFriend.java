@@ -48,10 +48,10 @@ public class ViewFriend extends Activity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
                 TextView clickedFriend = (TextView) view;
-                Toast.makeText(getApplicationContext(), "Friend [" + clickedFriend.getText() + "]", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Friend [" + clickedFriend.getText() + "]",
+                        Toast.LENGTH_SHORT).show();
             }
         });
-
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -77,7 +77,7 @@ public class ViewFriend extends Activity {
     }
 
     /**
-     * Detect which a item is selected on the context menu.
+     * Detect which item is selected on the context menu.
      *
      * @param item The selected item on the context menu.
      */

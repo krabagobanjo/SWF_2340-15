@@ -8,7 +8,7 @@ import android.widget.TextView;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
- * Created by Jeongsoo on 2/19/2015.
+ * Displays a friend's details.
  */
 public class detail_Info extends Activity {
 
