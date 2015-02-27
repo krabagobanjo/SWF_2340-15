@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
@@ -45,11 +43,15 @@ public class ViewFriend extends Activity {
         listview.setAdapter(adapter);
         registerForContextMenu(listview);
 
+        final Activity thisItem = this;
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-                TextView clickedFriend = (TextView) view;
+               /* TextView clickedFriend = (TextView) view;
                 Toast.makeText(getApplicationContext(), "Friend [" + clickedFriend.getText() + "]",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
+                Intent intent = new Intent(thisItem, detail_Info.class);
+                intent.putExtra("friend_info",friendsList[index]);
+                startActivity(intent);
             }
         });
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
