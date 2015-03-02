@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -191,11 +192,13 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
                     sortOrder);
             c.moveToFirst();
             String[] friends = c.getString(0).split(",");
+            List<User> friendsList = new ArrayList<User>();
             for (String friend : friends) {
                 if (friend.length() > 0) {
-                    user.addFriend(users.get(friend));
+                    friendsList.add(users.get(friend));
                 }
             }
+            user.setFriends(friendsList);
             c.close();
         }
     }
