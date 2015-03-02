@@ -20,5 +20,9 @@
     <string name="title_activity_login">Log In</string>
     <string name="cancel">Cancel</string>
     <string name="prompt_password_confirm">Confirm Password</string>
+    <string name="title_activity_sale_request">Sale Request</string>
+    <string name="prompt_item">Item</string>
+    <string name="prompt_price">Price</string>
+    <string name="title_activity_view_items">View Items</string>
 
 </resources>

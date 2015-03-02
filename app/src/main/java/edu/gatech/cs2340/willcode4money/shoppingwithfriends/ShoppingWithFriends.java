@@ -32,11 +32,10 @@ public class ShoppingWithFriends extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //Multi-thread this
         usersDB = new UserDBHelper(this);
         users = usersDB.readUsers();
         saveTimer = new Timer(true);
-        saveTimer.schedule(new SaveTask(), AUTOSAVE_PERIOD, AUTOSAVE_PERIOD);
+        saveTimer.schedule(new SaveTask(this), AUTOSAVE_PERIOD, AUTOSAVE_PERIOD);
     }
 
     /**
@@ -83,11 +82,19 @@ public class ShoppingWithFriends extends Application {
      * Used to repeatedly save application information at regular intervals (an auto-save)
      */
     private class SaveTask extends TimerTask {
+        //The parent application class
+        private Application app;
+
+        public SaveTask(Application app) {
+            super();
+            this.app = app;
+        }
+
         /**
          * Saves all information about the application to permanent storage
          */
         public void run() {
-
+            usersDB.saveUsers(app);
         }
     }
 }

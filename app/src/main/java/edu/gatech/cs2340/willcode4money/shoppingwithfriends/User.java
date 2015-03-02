@@ -7,7 +7,6 @@ import java.util.List;
  * Contains User information needed by the application.
  */
 public class User {
-    private List<User> friends;
 
     private String name;
     private final String username;
@@ -16,6 +15,7 @@ public class User {
     private List<Integer> ratings;
     private boolean authenticated;
 
+    private List<User> friends;
     private List<SaleRequest> requests;
     private List<SaleReport> salesReported;
     private List<SaleReport> salesReceived;
@@ -25,6 +25,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.name = name;
+        this.authenticated = false;
         this.ratings = new ArrayList<Integer>();
         this.salesReported = new ArrayList<SaleReport>();
         this.salesReceived = new ArrayList<SaleReport>();
