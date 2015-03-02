@@ -81,7 +81,6 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
             user.addRequest(c.getString(0), Double.parseDouble(c.getString(1)));
         } while (c.moveToNext());
         c.close();
-        db.close();
     }
 
     public void saveAllRequests(Map<String, User> users) {
