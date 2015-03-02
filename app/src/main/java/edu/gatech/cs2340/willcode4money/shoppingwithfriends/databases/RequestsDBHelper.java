@@ -1,5 +1,6 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -97,8 +98,11 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
             String owner = request.getOwner();
             String item = request.getItem();
             String price = (Double.valueOf(request.getMaxPrice())).toString();
-            db.execSQL("INSERT OR IGNORE INTO " + TABLE_NAME + "(" + COLUMN_NAME_USER + "," + COLUMN_NAME_ITEM +
-                    "," + COLUMN_NAME_PRICE + ") VALUES(" + owner + "," + item + "," + price + ")");
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_NAME_USER, owner);
+            values.put(COLUMN_NAME_ITEM, item);
+            values.put(COLUMN_NAME_PRICE, price);
+            db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         }
     }
 }

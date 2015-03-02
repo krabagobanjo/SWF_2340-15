@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class ShoppingWithFriends extends Application {
 
     //Automatically saves information after a set time period
     private Timer saveTimer;
-    private final long AUTOSAVE_PERIOD = 120000L;
+    private final long AUTOSAVE_PERIOD = 60000L;
 
     /**
      * Opens or creates the save-state database and reads in any information.
@@ -36,6 +37,13 @@ public class ShoppingWithFriends extends Application {
         users = usersDB.readUsers();
         saveTimer = new Timer(true);
         saveTimer.schedule(new SaveTask(this), AUTOSAVE_PERIOD, AUTOSAVE_PERIOD);
+    }
+
+    /**
+     * Manually forces the application to save data to disk
+     */
+    public void save() {
+        (new SaveTask(this)).run();
     }
 
     /**
@@ -94,7 +102,9 @@ public class ShoppingWithFriends extends Application {
          * Saves all information about the application to permanent storage
          */
         public void run() {
+            Log.d("[DATABASE]", "SAVING TO DATABASE!");
             usersDB.saveUsers(app);
+            Log.d("[DATABASE]", "DONE SAVING!");
         }
     }
 }

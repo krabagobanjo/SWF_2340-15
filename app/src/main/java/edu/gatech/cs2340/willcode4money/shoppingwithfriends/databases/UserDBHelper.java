@@ -1,6 +1,7 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases;
 
 import android.app.Application;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -85,7 +86,9 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             friendsList.append(friend.getUsername());
             friendsList.append(",");
         }
-        friendsList.deleteCharAt(friendsList.length() - 1);
+        if (!friends.isEmpty()) {
+            friendsList.deleteCharAt(friendsList.length() - 1);
+        }
         String friendsString = friendsList.toString();
         //Save ratings as a comma-separated string of integers
         List<Integer> ratings = user.getRatingsList();
@@ -94,13 +97,20 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             rate.append(rating);
             rate.append(",");
         }
-        rate.deleteCharAt(rate.length() - 1);
+        if (!ratings.isEmpty()) {
+            friendsList.deleteCharAt(friendsList.length() - 1);
+        }
         String ratingString = rate.toString();
-        db.execSQL("INSERT OR IGNORE INTO " + TABLE_NAME + "(" + COLUMN_NAME_ID + "," + COLUMN_NAME_PASSWORD +
-                "," + COLUMN_NAME_NAME + "," + COLUMN_NAME_EMAIL + "," + COLUMN_NAME_FRIENDS + "," + COLUMN_NAME_RATINGS +
-                COLUMN_NAME_AUTH + ") VALUES(" + user.getUsername() + "," + user.getPassword() + "," + user.getName() + "," +
-                user.getEmail() + "," + friendsString + "," + ratingString + "," +
-                (user.getAuth() ? "yes" : "no") + ")");
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME_ID, user.getUsername());
+        values.put(COLUMN_NAME_PASSWORD, user.getPassword());
+        values.put(COLUMN_NAME_NAME, user.getName());
+        values.put(COLUMN_NAME_EMAIL, user.getEmail());
+        values.put(COLUMN_NAME_FRIENDS, friendsString);
+        values.put(COLUMN_NAME_RATINGS, ratingString);
+        values.put(COLUMN_NAME_AUTH, (user.getAuth() ? "yes" : "no"));
+        db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
     public Map<String, User> readUsers() {
@@ -128,7 +138,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         //Read friends list and list of ratings
         this.readFriends(db, users);
         this.readRatings(db, users);
-        db.execSQL(DELETE_ALL);
+        //db.execSQL(DELETE_ALL);
         db.close();
         //reportedDBhelper.readAllReports(user);
         requestsDBhelper.readAllRequests(users);
@@ -182,7 +192,9 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             c.moveToFirst();
             String[] friends = c.getString(0).split(",");
             for (String friend : friends) {
-                user.addFriend(users.get(friend));
+                if (friend.length() > 0) {
+                    user.addFriend(users.get(friend));
+                }
             }
             c.close();
         }
@@ -206,7 +218,9 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             c.moveToFirst();
             String[] ratings = c.getString(0).split(",");
             for (String rating : ratings) {
-                user.addRating(Integer.parseInt(rating));
+                if (rating.length() > 0) {
+                    user.addRating(Integer.parseInt(rating));
+                }
             }
             c.close();
         }
