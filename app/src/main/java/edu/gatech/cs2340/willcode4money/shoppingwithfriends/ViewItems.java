@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import java.util.List;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
@@ -30,7 +29,7 @@ public class ViewItems extends Activity {
         for (int i = 0; i < requestArray.length; i++) {
             itemsList[i] = requestArray[i].toString();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, itemsList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, itemsList);
         ListView listview = (ListView) findViewById(R.id.item_list);
         listview.setAdapter(adapter);
     }

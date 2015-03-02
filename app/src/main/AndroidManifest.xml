@@ -41,7 +41,7 @@
         </activity>
 
         <activity
-            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.detail_Info"
+            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.DetailInfo"
         />
 
         <activity

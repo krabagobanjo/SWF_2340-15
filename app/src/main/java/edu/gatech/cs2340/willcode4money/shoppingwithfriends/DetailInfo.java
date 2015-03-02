@@ -10,7 +10,7 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 /**
  * Displays a friend's details.
  */
-public class detail_Info extends Activity {
+public class DetailInfo extends Activity {
 
     /**
      * Creates and displays the selected friend's detail info
@@ -18,7 +18,7 @@ public class detail_Info extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_info);
+        setContentView(R.layout.activity_detail_info);
 
         Intent intent = getIntent();
         User friend = (User)intent.getSerializableExtra("friend_info");

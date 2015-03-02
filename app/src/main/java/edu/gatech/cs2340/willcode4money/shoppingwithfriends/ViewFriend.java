@@ -38,7 +38,7 @@ public class ViewFriend extends Activity {
             friendsList[i] = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().get(i);
             listName[i] = friendsList[i].getName();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listitem, listName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, listName);
         ListView listview = (ListView) findViewById(R.id.friends_list);
         listview.setAdapter(adapter);
         registerForContextMenu(listview);
@@ -49,7 +49,7 @@ public class ViewFriend extends Activity {
                /* TextView clickedFriend = (TextView) view;
                 Toast.makeText(getApplicationContext(), "Friend [" + clickedFriend.getText() + "]",
                         Toast.LENGTH_SHORT).show();*/
-                Intent intent = new Intent(thisItem, detail_Info.class);
+                Intent intent = new Intent(thisItem, DetailInfo.class);
                 intent.putExtra("friend_info",friendsList[index]);
                 startActivity(intent);
             }
@@ -88,7 +88,7 @@ public class ViewFriend extends Activity {
         int itemId = item.getItemId();
         if(itemId == 1)
         {
-            Intent intent = new Intent(this, detail_Info.class);
+            Intent intent = new Intent(this, DetailInfo.class);
             intent.putExtra("friend_info",friendsList[index]);
             startActivity(intent);
         }
