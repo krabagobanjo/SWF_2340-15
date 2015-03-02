@@ -7,51 +7,51 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleRequest;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.*;
+
 /**
  * An SQLite database helper that allows the application to save and retrieve item request information.
  */
 
 class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
-    private static final String DATABASE_NAME = "Requests.db";
-    private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "requests";
-    private static final String COLUMN_NAME_USER = "user";
-    private static final String COLUMN_NAME_ITEM = "item";
-    private static final String COLUMN_NAME_PRICE = "price";
-
-    //CREATE TABLE requests(_ID TEXT PRIMARY KEY,user TEXT,item TEXT,price TEXT)
-    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + _ID +
-            " TEXT PRIMARY KEY," + COLUMN_NAME_USER + " TEXT," + COLUMN_NAME_ITEM + " TEXT," +
-            COLUMN_NAME_PRICE + " TEXT" + ")";
-
-    //DROP TABLE IF EXISTS users;
-    private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-
-    //Delete all entries from table: DELETE FROM users
-    private static final String DELETE_ALL = "DELETE FROM " + TABLE_NAME;
 
     public RequestsDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * Initializes the table in the database
+     * @param db - the database to initialize
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
     }
 
+    /**
+     * Updates the database version
+     * @param db - the database to update
+     * @param oldVersion - the version of the old database
+     * @param newVersion - the version of the new database
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE);
         this.onCreate(db);
     }
 
+    /**
+     * Reads all users' sale requests from the disk and saves them to each user.
+     * @param users a map of users who have sale requests on the disk
+     */
     public void readAllRequests(Map<String, User> users) {
         SQLiteDatabase db = this.getWritableDatabase();
         for (User user : users.values()) {
@@ -60,6 +60,7 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
         db.close();
     }
 
+    //Loads the sale requests from the disk for a certain user
     private void readRequests(SQLiteDatabase db, User user) {
         String username = user.getUsername();
         String[] proj = {
@@ -74,15 +75,20 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
                 null,
                 null,
                 sortOrder);
-        if (!c.moveToFirst()) {
-            return;
+        List<SaleRequest> req = new ArrayList<SaleRequest>();
+        if (c.moveToFirst()) {
+            do {
+                req.add(new SaleRequest(username, c.getString(0), Double.parseDouble(c.getString(1))));
+            } while (c.moveToNext());
         }
-        do {
-            user.addRequest(c.getString(0), Double.parseDouble(c.getString(1)));
-        } while (c.moveToNext());
         c.close();
+        user.setRequests(req);
     }
 
+    /**
+     * Saves the sale requests for all registered users in the map onto the disk
+     * @param users a map containing the registered users in the application
+     */
     public void saveAllRequests(Map<String, User> users) {
         SQLiteDatabase db = this.getWritableDatabase();
         for (User user : users.values()) {
@@ -91,6 +97,7 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
         db.close();
     }
 
+    //Saves the sale requests from a certain user to disk
     private void saveRequests(SQLiteDatabase db, User user) {
         List<SaleRequest> requests = user.getRequests();
         for (SaleRequest request : requests) {

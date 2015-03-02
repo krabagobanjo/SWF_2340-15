@@ -5,45 +5,75 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
+import java.util.Map;
+
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
+
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.*;
 
 /**
  * An SQLite database helper that allows the application to save and retrieve sale request information.
  */
 
 class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
-    private static final String DATABASE_NAME = "ReportedSales.db";
-    private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "reports";
-
-    private static final String CREATE_TABLE = "";
-    //DROP TABLE IF EXISTS users;
-    private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-
-    //Delete all entries from table: DELETE FROM users
-    private static final String DELETE_ALL = "DELETE FROM " + TABLE_NAME;
 
     public ReportedDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    /**
+     * Initializes the table in this database
+     * @param db - the database in which to create the table
+     */
+    @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(CREATE_TABLE);
     }
 
+    /**
+     * Updates the database when a newer version is created
+     * @param db - the database to update
+     * @param oldVersion - the version of the old database
+     * @param newVersion - the version of the new database
+     */
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL(DROP_TABLE);
+        onCreate(db);
+    }
+
+    /**
+     * Reads from disk all users' sale reports
+     * @param users - a map containing the users in the application
+     */
+    public void readAllReports(Map<String, User> users) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (User user : users.values()) {
+            this.readReports(db, user);
+        }
+        db.close();
+    }
+
+    //Reads the sale reports for a user from disk
+    private void readReports(SQLiteDatabase db, User user) {
 
     }
 
-
-
-    public void readReports(User user) {
-
+    /**
+     * Saves to disk all users' sale reports
+     * @param users - a map containing the users in the application
+     */
+    public void saveAllReports(Map<String, User> users) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (User user : users.values()) {
+            this.saveReports(db, user);
+        }
+        db.close();
     }
 
-    public void saveReports(User user) {
+    //Saves the sale reports for a user to the disk
+    private void saveReports(SQLiteDatabase db, User user) {
 
     }
-
 }

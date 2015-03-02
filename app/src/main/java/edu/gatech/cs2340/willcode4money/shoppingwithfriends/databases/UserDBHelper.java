@@ -17,39 +17,15 @@ import java.util.Set;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.UserStrings.*;
 /**
  * An SQLite database helper that allows the application to save and retrieve user information.
  */
 public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
-    private static final String DATABASE_NAME = "RegisteredUsers.db";
-    private static final int DATABASE_VERSION = 1;
 
     //Databases holding reported sales and item requests
     private ReportedDBHelper reportedDBhelper;
     private RequestsDBHelper requestsDBhelper;
-
-    //Constant values
-    private static final String TABLE_NAME = "users";
-    private static final String COLUMN_NAME_ID = "username";
-    private static final String COLUMN_NAME_NAME = "name";
-    private static final String COLUMN_NAME_PASSWORD = "password";
-    private static final String COLUMN_NAME_EMAIL = "email";
-    private static final String COLUMN_NAME_FRIENDS = "friends";
-    private static final String COLUMN_NAME_RATINGS = "ratings";
-    private static final String COLUMN_NAME_AUTH = "authenticated";
-
-    //CREATE TABLE users(_ID TEXT PRIMARY KEY, username TEXT UNIQUE, password TEXT, name TEXT, email TEXT,...
-    //friends TEXT, ratings TEXT, authenticated TEXT);
-    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + _ID + " TEXT PRIMARY KEY," +
-            COLUMN_NAME_ID + " TEXT UNIQUE," + COLUMN_NAME_PASSWORD + " TEXT," + COLUMN_NAME_NAME + " TEXT," +
-            COLUMN_NAME_EMAIL + " TEXT," + COLUMN_NAME_FRIENDS + " TEXT," + COLUMN_NAME_RATINGS + " TEXT," +
-            COLUMN_NAME_AUTH + " TEXT" + ")";
-
-    //DROP TABLE IF EXISTS users;
-    private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-
-    //Delete all entries from table: DELETE FROM users
-    private static final String DELETE_ALL = "DELETE FROM " + TABLE_NAME;
 
     public UserDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -57,17 +33,31 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         requestsDBhelper = new RequestsDBHelper(context);
     }
 
+    /**
+     * Initializes the tables used in this database (users table)
+     * @param db - the database to initialize
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
     }
 
+    /**
+     * Updates the tables in the database if necessary
+     * @param db - the database to update
+     * @param oldVersion - the version of the old database
+     * @param newVersion - the version of the new database
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE);
         onCreate(db);
     }
 
+    /**
+     * Saves the user information to disk for persistence
+     * @param application - the Application to save
+     */
     public void saveUsers(Application application) {
         Map<String, User> users = ((ShoppingWithFriends) application).getUsers();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -76,9 +66,10 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         }
         db.close();
         requestsDBhelper.saveAllRequests(users);
-        //reportedDBhelper.saveAllReports(user);
+        reportedDBhelper.saveAllReports(users);
     }
 
+    //Saves the information for each user to disk.
     private void saveUser(SQLiteDatabase db, User user) {
         //Save friends list as comma-separated string of usernames
         List<User> friends = user.getFriends();
@@ -114,6 +105,10 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
     }
 
+    /**
+     * Reads user and report/request data from disk to restore on app restart.
+     * @return a map containing saved users from the disk
+     */
     public Map<String, User> readUsers() {
         Map<String, User> users = new HashMap<String, User>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -139,13 +134,13 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         //Read friends list and list of ratings
         this.readFriends(db, users);
         this.readRatings(db, users);
-        //db.execSQL(DELETE_ALL);
         db.close();
-        //reportedDBhelper.readAllReports(user);
+        reportedDBhelper.readAllReports(users);
         requestsDBhelper.readAllRequests(users);
         return users;
     }
 
+    //Reads the information for each user from disk.
     private User readUser(SQLiteDatabase db, String username) {
         User user;
         String password, email, name;
@@ -175,6 +170,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         return user;
     }
 
+    //Reads the friends list of each user and reconstructs it.
     private void readFriends(SQLiteDatabase db, Map<String, User> users) {
         Set<String> usernames = users.keySet();
         String[] proj = {COLUMN_NAME_FRIENDS};
@@ -203,6 +199,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         }
     }
 
+    //Reads ratings information from the database and saves it to each user.
     private void readRatings(SQLiteDatabase db, Map<String, User> users) {
         Set<String> usernames = users.keySet();
         String[] proj = {COLUMN_NAME_RATINGS};

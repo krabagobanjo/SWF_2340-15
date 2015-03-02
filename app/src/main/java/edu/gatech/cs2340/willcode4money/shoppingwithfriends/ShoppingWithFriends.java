@@ -5,8 +5,6 @@ import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelper;
 
@@ -23,27 +21,26 @@ public class ShoppingWithFriends extends Application {
     //The database information is saved to and read from
     UserDBHelper usersDB;
 
-    //Automatically saves information after a set time period
-    private Timer saveTimer;
-    private final long AUTOSAVE_PERIOD = 60000L;
-
     /**
-     * Opens or creates the save-state database and reads in any information.
+     * Opens or creates the save-state database and reads in any information that exists.
      */
     @Override
     public void onCreate() {
         super.onCreate();
         usersDB = new UserDBHelper(this);
+        Log.d("[DATABASE]", "Reading from disk!");
         users = usersDB.readUsers();
-        saveTimer = new Timer(true);
-        saveTimer.schedule(new SaveTask(this), AUTOSAVE_PERIOD, AUTOSAVE_PERIOD);
+        Log.d("[DATABASE]", "Done reading!");
     }
 
     /**
-     * Manually forces the application to save data to disk
+     * Saves this application's data to disk. To be run after all methods which nodify
+     * application data.
      */
     public void save() {
-        (new SaveTask(this)).run();
+        Log.d("[DATABASE]","Saving to disk!");
+        usersDB.saveUsers(this);
+        Log.d("[DATABASE]", "Done saving!");
     }
 
     /**
@@ -84,27 +81,5 @@ public class ShoppingWithFriends extends Application {
      */
     public String getCurrentUser() {
         return currentUser;
-    }
-
-    /**
-     * Used to repeatedly save application information at regular intervals (an auto-save)
-     */
-    private class SaveTask extends TimerTask {
-        //The parent application class
-        private Application app;
-
-        public SaveTask(Application app) {
-            super();
-            this.app = app;
-        }
-
-        /**
-         * Saves all information about the application to permanent storage
-         */
-        public void run() {
-            Log.d("[DATABASE]", "SAVING TO DATABASE!");
-            usersDB.saveUsers(app);
-            Log.d("[DATABASE]", "DONE SAVING!");
-        }
     }
 }
