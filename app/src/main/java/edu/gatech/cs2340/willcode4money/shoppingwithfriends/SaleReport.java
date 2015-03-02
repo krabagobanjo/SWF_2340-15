@@ -9,6 +9,7 @@ public class SaleReport {
     private double price;
     private final String reportedBy;
     private final String reportedTo;
+    //private Location location;
 
     public SaleReport(String item, String reportedBy, String reportedTo, double price) {
         this.item = item;

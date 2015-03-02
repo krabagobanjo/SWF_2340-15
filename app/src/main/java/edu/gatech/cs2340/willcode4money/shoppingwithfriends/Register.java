@@ -52,8 +52,7 @@ public class Register extends Activity {
         Map<String, User> tempUsers = ((ShoppingWithFriends) this.getApplication()).getUsers();
         if (password.equals(passwordConfirm)) {
             if (!tempUsers.containsKey(username)) {
-                tempUsers.put(username, new User(username, password, email, name));
-                ((ShoppingWithFriends) this.getApplication()).setUsers(tempUsers);
+                ((ShoppingWithFriends) this.getApplication()).addUser(new User(username, password, email, name));
                 Toast.makeText(getApplicationContext(), "Success",
                         Toast.LENGTH_LONG).show();
                 //Remove cancel button from screen

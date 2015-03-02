@@ -1,9 +1,14 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelper;
 
 /**
  * A class to carry information between activities
@@ -14,6 +19,32 @@ public class ShoppingWithFriends extends Application {
 
     //The username of the currently logged-in user
     private String currentUser = "";
+
+    //The database information is saved to and read from
+    UserDBHelper usersDB;
+
+    //Automatically saves information after a set time period
+    private Timer saveTimer;
+    private final long AUTOSAVE_PERIOD = 60000L;
+
+    /**
+     * Opens or creates the save-state database and reads in any information.
+     */
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        usersDB = new UserDBHelper(this);
+        users = usersDB.readUsers();
+        saveTimer = new Timer(true);
+        saveTimer.schedule(new SaveTask(this), AUTOSAVE_PERIOD, AUTOSAVE_PERIOD);
+    }
+
+    /**
+     * Manually forces the application to save data to disk
+     */
+    public void save() {
+        (new SaveTask(this)).run();
+    }
 
     /**
      * Gets a list of registered users
@@ -41,10 +72,10 @@ public class ShoppingWithFriends extends Application {
 
     /**
      * Keeps track of the user that is currently logged in
-     * @param currentUser the username of the currently logged-in user
+     * @param username the username of the currently logged-in user
      */
-    public void setCurrentUser(String currentUser) {
-        this.currentUser = currentUser;
+    public void setCurrentUser(String username) {
+        this.currentUser = username;
     }
 
     /**
@@ -53,5 +84,27 @@ public class ShoppingWithFriends extends Application {
      */
     public String getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     * Used to repeatedly save application information at regular intervals (an auto-save)
+     */
+    private class SaveTask extends TimerTask {
+        //The parent application class
+        private Application app;
+
+        public SaveTask(Application app) {
+            super();
+            this.app = app;
+        }
+
+        /**
+         * Saves all information about the application to permanent storage
+         */
+        public void run() {
+            Log.d("[DATABASE]", "SAVING TO DATABASE!");
+            usersDB.saveUsers(app);
+            Log.d("[DATABASE]", "DONE SAVING!");
+        }
     }
 }

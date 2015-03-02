@@ -8,8 +8,6 @@ import java.util.List;
  * Contains User information needed by the application.
  */
 public class User implements Serializable{
-    private List<User> friends;
-
     private String name;
     private final String username;
     private String password;
@@ -17,6 +15,7 @@ public class User implements Serializable{
     private List<Integer> ratings;
     private boolean authenticated;
 
+    private List<User> friends;
     private List<SaleRequest> requests;
     private List<SaleReport> salesReported;
     private List<SaleReport> salesReceived;
@@ -26,7 +25,9 @@ public class User implements Serializable{
         this.password = password;
         this.email = email;
         this.name = name;
+        this.authenticated = false;
         this.ratings = new ArrayList<Integer>();
+        this.requests = new ArrayList<SaleRequest>();
         this.salesReported = new ArrayList<SaleReport>();
         this.salesReceived = new ArrayList<SaleReport>();
         this.friends = new ArrayList<User>();
@@ -223,7 +224,11 @@ public class User implements Serializable{
         this.salesReceived = received;
     }
 
-
+    /**
+     * Determines if two users are the same by using their usernames
+     * @param o the user to compare to
+     * @return true if the usernames match
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
