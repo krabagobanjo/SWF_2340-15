@@ -52,6 +52,7 @@ public class Login extends Activity {
             intent = new Intent(this, MainScreen.class);
             ((ShoppingWithFriends) this.getApplication()).setCurrentUser(username);
             ((ShoppingWithFriends) this.getApplication()).getUsers().get(username).setAuth(true);
+            ((ShoppingWithFriends) this.getApplication()).save();
             startActivity(intent);
             this.finish();
         } else {

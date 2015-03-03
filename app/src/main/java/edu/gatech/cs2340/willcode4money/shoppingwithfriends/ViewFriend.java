@@ -95,6 +95,7 @@ public class ViewFriend extends Activity {
         if(itemId == 2)
         {
             ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).removeFriend(friendsList[index]);
+            ((ShoppingWithFriends) this.getApplication()).save();
             finish();
             startActivity(new Intent(this, ViewFriend.class));
         }

@@ -36,7 +36,7 @@ public class SaleRequest extends Activity {
         if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
-    public void makeRequest(View vie) {
+    public void makeRequest(View view) {
         EditText input1 = (EditText) findViewById(R.id.item);
         EditText input2 = (EditText) findViewById(R.id.price);
 
@@ -51,6 +51,7 @@ public class SaleRequest extends Activity {
         input1.setText("");
         input2.setText("");
         input1.requestFocus();
+        ((ShoppingWithFriends) this.getApplication()).save();
     }
 
     public void cancel(View view) {
@@ -87,6 +88,7 @@ public class SaleRequest extends Activity {
      */
     public void setMaxPrice(double maxPrice) {
         this.maxPrice = maxPrice;
+        ((ShoppingWithFriends) this.getApplication()).save();
     }
 
     @Override

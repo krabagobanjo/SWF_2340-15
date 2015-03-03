@@ -27,6 +27,7 @@ public class MainScreen extends Activity {
     public void logout(View view) {
         ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).setAuth(false);
         ((ShoppingWithFriends) this.getApplication()).setCurrentUser("");
+        ((ShoppingWithFriends) this.getApplication()).save();
         finish();
     }
 

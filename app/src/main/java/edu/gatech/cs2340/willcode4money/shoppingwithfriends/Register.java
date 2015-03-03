@@ -57,6 +57,7 @@ public class Register extends Activity {
                         Toast.LENGTH_LONG).show();
                 //Remove cancel button from screen
                 findViewById(R.id.cancelBtn).setVisibility(View.INVISIBLE);
+                ((ShoppingWithFriends) this.getApplication()).save();
                 //Wait 1 second before returning back
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -79,6 +80,7 @@ public class Register extends Activity {
                     Toast.LENGTH_LONG).show();
             passwordEditText.setText("");
             passwordConfirmEditText.setText("");
+            passwordEditText.requestFocus();
         }
     }
 
