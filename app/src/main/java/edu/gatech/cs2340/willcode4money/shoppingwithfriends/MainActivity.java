@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import javax.mail.MessagingException;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.email.MailSender;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
@@ -17,6 +20,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //TODO REMOVE THIS
+        try {
+            (new MailSender("swf.team39@gmail.com", "wc4mteam39")).sendMail("Tyler",
+                    "t.m.s015@gmail.com", "testPass");
+        } catch (MessagingException e) { }
     }
 
     /**
