@@ -1,6 +1,6 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends.email;
 
-import android.os.StrictMode;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class MailSender {
+public class MailSender extends AsyncTask<String, Void, Void> {
     private String mailhost = "smtp.gmail.com";
     private String appName = "Shopping With Friends Team 39";
     private String user;
@@ -22,6 +22,7 @@ public class MailSender {
     private Session session;
 
     public MailSender(String user, String password) {
+        super();
         this.user = user;
         this.password = password;
 
@@ -36,14 +37,22 @@ public class MailSender {
         session = Session.getInstance(props, new MailAuthenticator(this.user, this.password));
 
         //TODO REMOVE THIS IMMEDIATELY
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        /*StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);*/
     }
 
-    public synchronized void sendMail(String name, String recipient, String theirPass) throws MessagingException {
-        Transport transport = session.getTransport("smtp");
+    public void sendMail(String name, String recipient, String theirPass) {
+        this.execute(name, recipient, theirPass);
+    }
+
+    public synchronized Void doInBackground(String... params) {
+        Transport transport = null;
+        String name = params[0];
+        String recipient = params[1];
+        String theirPass = params[2];
 
         try {
+            transport = session.getTransport("smtp");
             body = "Hello, " + name + "!\n\tYour password is below. Please do try and remember it next time!\n\n\n" +
                     theirPass + "\n\n\nSincerely,\nShopping With Friends, Team 39";
             MimeMessage message = new MimeMessage(session);
@@ -64,7 +73,10 @@ public class MailSender {
             Log.d("[EMAIL]", "Could not send message (Exception)!");
             e.printStackTrace();
         } finally {
-            transport.close();
+            try {
+                transport.close();
+            } catch(Exception e) {}
         }
+        return null;
     }
 }
