@@ -8,13 +8,12 @@ import android.widget.ListView;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
- * Created by Hanbeen on 2/25/2015.
  * user's requested item list with price
  */
 public class ViewItems extends Activity {
 
     /**
-     * Creates and displays the user's item list
+     * Creates and displays the user's list of requested items
      */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

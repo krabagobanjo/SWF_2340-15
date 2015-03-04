@@ -42,6 +42,7 @@ public class AddFriend extends Activity {
         if (foundFriend) {
             Toast.makeText(getApplicationContext(), "Friend Added",
                     Toast.LENGTH_LONG).show();
+            ((ShoppingWithFriends) this.getApplication()).save();
         }
         else {
             Toast.makeText(getApplicationContext(), "Couldn't find user",

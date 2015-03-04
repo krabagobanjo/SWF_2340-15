@@ -9,10 +9,13 @@ import java.util.Map;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
-import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.*;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.CREATE_TABLE;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DATABASE_NAME;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DATABASE_VERSION;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DROP_TABLE;
 
 /**
- * An SQLite database helper that allows the application to save and retrieve sale request information.
+ * An SQLite database helper that allows the application to save and retrieve sale report information.
  */
 
 class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
@@ -57,7 +60,8 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
 
     //Reads the sale reports for a user from disk
     private void readReports(SQLiteDatabase db, User user) {
-
+        user.setSalesReported(null);
+        user.setSalesReceived(null);
     }
 
     /**

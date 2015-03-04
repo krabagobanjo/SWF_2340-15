@@ -45,7 +45,7 @@
             android:label="@string/title_activity_view_friends"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.detail_Info" />
+        <activity android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.DetailInfo" />
         <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleRequest"
             android:configChanges="orientation|keyboardHidden|screenSize"
