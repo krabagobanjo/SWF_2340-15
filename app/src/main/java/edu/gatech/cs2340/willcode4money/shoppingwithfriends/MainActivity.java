@@ -1,12 +1,10 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriends.email.MailSender;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
@@ -14,15 +12,14 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
  */
 public class MainActivity extends Activity {
 
+    /**
+     * Creates the screen on startup.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //TODO REMOVE THIS
-        (new MailSender("swf.team39@gmail.com", "wc4mteam39")).sendMail("Tyler",
-                "t.m.s015@gmail.com", "testPass");
-        (new MailSender("swf.team39@gmail.com", "wc4mteam39")).sendMail("Tyler",
-                "krabagobanjo@outlook.com", "testPass");
     }
 
     /**

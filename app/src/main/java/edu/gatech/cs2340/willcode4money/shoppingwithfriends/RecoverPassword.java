@@ -2,8 +2,15 @@ package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import java.util.Random;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.email.MailSender;
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
@@ -12,31 +19,76 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 public class RecoverPassword extends Activity {
     private static final String USERNAME = "swf.team39@gmail.com";
     private static final String PASSWORD = "wc4mteam39";
+    private static ShoppingWithFriends thisApp;
 
-    /** Called when the activity is first created. */
+    private EditText userBox;
+    private Button send;
+    private ProgressBar circle;
+
+    /**
+     * Called when the activity is first created.
+     * */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send_mail);
+        thisApp = ((ShoppingWithFriends) this.getApplication());
+        setContentView(R.layout.activity_recover_password);
+        userBox = (EditText) this.findViewById(R.id.recovery_user);
+        send = (Button) this.findViewById(R.id.send);
+        circle = (ProgressBar) this.findViewById(R.id.progress);
+        circle.setVisibility(View.GONE);
+    }
 
-        final Button send = (Button) this.findViewById(R.id.send);
-        /*send.setOnClickListener(new View.OnClickListener() {
+    public void recover(View view) {
+        String username = userBox.getText().toString();
+        User user = thisApp.getUsers().get(username);
+        if (user == null) {
+            this.notFound();
+            return;
+        }
+        String name = user.getName();
+        String email = user.getEmail();
+        String oldPass = user.getPassword();
+        String password = this.getNewPassword();
+        user.setPassword(password);
+        MailSender sender = new MailSender(USERNAME, PASSWORD);
+        circle.setVisibility(View.VISIBLE);
+        boolean wasSent = sender.sendMail(name, email, password);
+        circle.setVisibility(View.GONE);
+        if (wasSent) {
+            thisApp.save();
+        } else {
+            user.setPassword(oldPass);
+            //Notify user of failed sending
+        }
+    }
 
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
+    //Constructs a new, random password for the user.
+    private String getNewPassword() {
+        char[] symbols;
+        char[] pass = new char[8];
+        StringBuilder tmp = new StringBuilder();
+        for (char ch = '0'; ch <= '9'; ch++) {
+            tmp.append(ch);
+        }
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            tmp.append(ch);
+        }
+        for (char ch = 'A'; ch <= 'Z'; ch++) {
+            tmp.append(ch);
+        }
+        symbols = tmp.toString().toCharArray();
+        Random r = new Random();
+        for (int i = 0; i < 7; i++) {
+            pass[i] = symbols[r.nextInt(symbols.length)];
+        }
+        return new String(pass);
+    }
 
-                try {
-                    MailSender sender = new MailSender(USERNAME, PASSWORD);
-                    sender.sendMail("This is Subject",
-                            "This is Body",
-                            "user@gmail.com",
-                            "user@yahoo.com");
-                } catch (Exception e) {
-                    Log.e("[EMAIL]", e.getMessage(), e);
-                }
-
-            }
-        });*/
-
+    //Called when the username provided by the user is not registered
+    private void notFound() {
+        Toast.makeText(this, "That user does not exist.", Toast.LENGTH_LONG).show();
+        userBox.setText("");
+        userBox.requestFocus();
     }
 }
