@@ -9,7 +9,6 @@ import java.util.Map;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
-import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.CREATE_TABLE;
 import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DATABASE_NAME;
 import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DATABASE_VERSION;
 import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DROP_TABLE;
@@ -31,7 +30,7 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE);
+        //db.execSQL(CREATE_TABLE);
     }
 
     /**

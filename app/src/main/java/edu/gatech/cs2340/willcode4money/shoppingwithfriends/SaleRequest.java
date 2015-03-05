@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * Contains a request made by a user for certain items
  */
-public class SaleRequest extends Activity {
+public class SaleRequest extends Activity implements Serializable {
     private final String owner;
     private final String item;
     private double maxPrice;

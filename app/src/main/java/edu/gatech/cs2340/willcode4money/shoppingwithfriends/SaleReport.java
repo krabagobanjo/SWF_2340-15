@@ -1,9 +1,11 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
+import java.io.Serializable;
+
 /**
  * Report of sales found by users.
  */
-public class SaleReport {
+public class SaleReport implements Serializable {
 
     private final String item;
     private double price;

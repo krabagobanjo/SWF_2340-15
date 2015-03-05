@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Contains User information needed by the application.
  */
-public class User implements Serializable{
+public class User implements Serializable {
     private String name;
     private final String username;
     private String password;
