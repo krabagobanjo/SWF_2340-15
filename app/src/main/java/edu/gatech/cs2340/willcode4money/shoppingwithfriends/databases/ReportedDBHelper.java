@@ -59,8 +59,8 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
 
     //Reads the sale reports for a user from disk
     private void readReports(SQLiteDatabase db, User user) {
-        user.setSalesReported(null);
-        user.setSalesReceived(null);
+        //user.setSalesReported(null);
+        //user.setSalesReceived(null);
     }
 
     /**
