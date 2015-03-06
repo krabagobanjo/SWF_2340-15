@@ -70,6 +70,14 @@
                 android:textStyle="bold"
                 android:onClick="login"
                 android:layout_gravity="start|top"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgot_pass"
+                android:id="@+id/recover_btn"
+                android:layout_gravity="center_horizontal|bottom"
+                android:onClick="recovery"/>
         </FrameLayout>
 
     </LinearLayout>

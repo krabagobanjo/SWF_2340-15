@@ -71,4 +71,12 @@ public class Login extends Activity {
     public void cancel(View view) {
         finish();
     }
+
+    /**
+     * Alows the user to recover their account.
+     */
+    public void recovery(View view) {
+        startActivity(new Intent(this, RecoverPassword.class));
+        this.finish();
+    }
 }

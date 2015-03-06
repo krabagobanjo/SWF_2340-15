@@ -24,5 +24,7 @@
     <string name="prompt_item">Item</string>
     <string name="prompt_price">Price</string>
     <string name="title_activity_view_items">View Items</string>
+    <string name="send_recovery_email">Send Email</string>
+    <string name="forgot_pass">Forgot password?</string>
 
 </resources>

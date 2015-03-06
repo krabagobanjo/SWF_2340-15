@@ -1,11 +1,13 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -24,6 +26,7 @@ public class RecoverPassword extends Activity {
     private EditText userBox;
     private Button send;
     private ProgressBar circle;
+    private TextView message;
 
     /**
      * Called when the activity is first created.
@@ -37,8 +40,14 @@ public class RecoverPassword extends Activity {
         send = (Button) this.findViewById(R.id.send);
         circle = (ProgressBar) this.findViewById(R.id.progress);
         circle.setVisibility(View.GONE);
+        message = (TextView) this.findViewById(R.id.recovery_message);
+        message.setVisibility(View.GONE);
     }
 
+    /**
+     * Tries to send an email to the user
+     * @param view - the "send email" button
+     */
     public void recover(View view) {
         String username = userBox.getText().toString();
         User user = thisApp.getUsers().get(username);
@@ -59,7 +68,9 @@ public class RecoverPassword extends Activity {
             thisApp.save();
         } else {
             user.setPassword(oldPass);
-            //Notify user of failed sending
+            message.setText("Unable to send email. Are you online?");
+            message.setTextColor(Color.RED);
+            message.setVisibility(View.VISIBLE);
         }
     }
 
