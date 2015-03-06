@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
@@ -19,6 +20,11 @@ public class MainScreen extends Activity {
         setContentView(R.layout.activity_main_screen);
         currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
         if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+
+        if (!((ShoppingWithFriends) this.getApplication()).getValidReports().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "You have Reports!",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -38,4 +44,8 @@ public class MainScreen extends Activity {
     public void viewRequests(View view) { startActivity(new Intent(this, ViewItems.class)); }
 
     public void makeRequests(View view) { startActivity(new Intent(this, SaleRequest.class)); }
+
+    public void viewReports(View view) { startActivity(new Intent(this, ViewReports.class)); }
+
+    public void makeReport(View view) { startActivity(new Intent(this, SaleReport.class)); }
 }

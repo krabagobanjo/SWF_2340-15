@@ -51,9 +51,21 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
+            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleReport"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_sale_report"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
             android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ViewItems"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_view_items"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ViewReports"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_view_reports"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
