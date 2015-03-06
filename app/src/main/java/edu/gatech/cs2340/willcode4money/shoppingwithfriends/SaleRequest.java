@@ -38,6 +38,10 @@ public class SaleRequest extends Activity implements Serializable {
         if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
+    /**
+     * Adds a sale request for this specified item and price
+     * @param view - the "make request" button
+     */
     public void makeRequest(View view) {
         EditText input1 = (EditText) findViewById(R.id.item);
         EditText input2 = (EditText) findViewById(R.id.price);
