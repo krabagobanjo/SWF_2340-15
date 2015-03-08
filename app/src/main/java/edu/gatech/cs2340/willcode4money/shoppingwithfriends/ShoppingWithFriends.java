@@ -3,7 +3,9 @@ package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelper;
@@ -13,10 +15,11 @@ import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelp
  */
 public class ShoppingWithFriends extends Application {
     //Contains the registered users in the application
-    private Map<String, User> users = new HashMap<String, User>();
+    private Map<String, User> userMap = new HashMap<String, User>();
+    private Map<String, List<SaleReport>> reportMap = new HashMap<String, List<SaleReport>>();
 
     //The username of the currently logged-in user
-    private String currentUser = "";
+    private String currentUserAsKey = "";
 
     //The database information is saved to and read from
     UserDBHelper usersDB;
@@ -29,8 +32,16 @@ public class ShoppingWithFriends extends Application {
         super.onCreate();
         usersDB = new UserDBHelper(this);
         Log.d("[DATABASE]", "Reading from disk!");
-        users = usersDB.readUsers();
+        userMap = usersDB.readUsers();
         Log.d("[DATABASE]", "Done reading!");
+    }
+
+    public Map<String, List<SaleReport>> getReportBucket() {
+        return reportMap;
+    }
+
+    public void setReportMap(Map<String, List<SaleReport>> reportMap) {
+        this.reportMap = reportMap;
     }
 
     /**
@@ -48,7 +59,7 @@ public class ShoppingWithFriends extends Application {
      * @return the list of registered users
      */
     public Map<String, User> getUsers() {
-        return users;
+        return userMap;
     }
 
     /**
@@ -56,7 +67,34 @@ public class ShoppingWithFriends extends Application {
      * @param users the list of registered users
      */
     public void setUsers(Map<String, User> users) {
-        this.users = users;
+        this.userMap = users;
+    }
+
+    /**
+     * Gets a list of reports posted that match user requests
+     * @return the list of valid SaleReport 's
+     */
+    public List<SaleReport> getValidReports() {
+        //the return list
+        List<SaleReport> validReports = new ArrayList<SaleReport>();
+
+        //get the current user class
+        User tempUser = userMap.get(currentUserAsKey);
+        //loop through all of the requests in user to compare to reports in app
+        for (SaleRequest tempSaleRequest : tempUser.getRequests()) {
+            //check if the equivalent report is in the report bucket
+            if (reportMap.containsKey(tempSaleRequest.getItem())) {
+                //if a list of items is present loop through them checking for valid prices
+                for (SaleReport tempReport : reportMap.get(tempSaleRequest.getItem())) {
+                    if (tempReport.getPrice() <= tempSaleRequest.getMaxPrice()
+                            && tempUser.getFriends().contains(userMap.get(tempReport.getOwner()))) {
+                        validReports.add(tempReport);
+                    }
+                }
+            }
+        }
+        //return the list;
+        return validReports;
     }
 
     /**
@@ -64,7 +102,7 @@ public class ShoppingWithFriends extends Application {
      * @param user the user to add to the registered users list
      */
     public void addUser(User user) {
-        this.users.put(user.getUsername(), user);
+        this.userMap.put(user.getUsername(), user);
     }
 
     /**
@@ -72,7 +110,7 @@ public class ShoppingWithFriends extends Application {
      * @param username the username of the currently logged-in user
      */
     public void setCurrentUser(String username) {
-        this.currentUser = username;
+        this.currentUserAsKey = username;
     }
 
     /**
@@ -80,6 +118,6 @@ public class ShoppingWithFriends extends Application {
      * @return the username of the current user
      */
     public String getCurrentUser() {
-        return currentUser;
+        return currentUserAsKey;
     }
 }

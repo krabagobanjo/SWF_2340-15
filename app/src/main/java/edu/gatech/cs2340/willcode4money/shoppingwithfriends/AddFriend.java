@@ -32,7 +32,8 @@ public class AddFriend extends Activity {
 
         boolean foundFriend = false;
         for (int i = 0; i < users.length; i++) {
-            if (users[i].getEmail().equals(email) && users[i].getName().equals(name) && !users[i].equals(cUser)) {
+            if (users[i].getEmail().equals(email) && users[i].getName().equals(name) && !users[i].equals(cUser)
+                    && !((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().contains(users[i])) {
                 ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).addFriend(users[i]);
                 foundFriend = true;
                 break;
@@ -42,6 +43,7 @@ public class AddFriend extends Activity {
         if (foundFriend) {
             Toast.makeText(getApplicationContext(), "Friend Added",
                     Toast.LENGTH_LONG).show();
+            ((ShoppingWithFriends) this.getApplication()).save();
         }
         else {
             Toast.makeText(getApplicationContext(), "Couldn't find user",

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,15 @@ import java.util.Map;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleRequest;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
-import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.*;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.COLUMN_NAME_ITEM;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.COLUMN_NAME_PRICE;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.COLUMN_NAME_USER;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.CREATE_TABLE;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.DATABASE_NAME;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.DATABASE_VERSION;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.DELETE_ALL;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.DROP_TABLE;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.RequestStrings.TABLE_NAME;
 
 /**
  * An SQLite database helper that allows the application to save and retrieve item request information.
@@ -79,6 +88,7 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
         if (c.moveToFirst()) {
             do {
                 req.add(new SaleRequest(username, c.getString(0), Double.parseDouble(c.getString(1))));
+                Log.d("[Req read]", username+","+c.getString(0)+","+c.getString(1));
             } while (c.moveToNext());
         }
         c.close();
@@ -91,6 +101,8 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
      */
     public void saveAllRequests(Map<String, User> users) {
         SQLiteDatabase db = this.getWritableDatabase();
+        //Problems with duplicates
+        db.execSQL(DELETE_ALL);
         for (User user : users.values()) {
             this.saveRequests(db, user);
         }
@@ -108,6 +120,7 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
             values.put(COLUMN_NAME_USER, owner);
             values.put(COLUMN_NAME_ITEM, item);
             values.put(COLUMN_NAME_PRICE, price);
+            Log.d("[req. save]", "Saving " + request.toString());
             db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         }
     }

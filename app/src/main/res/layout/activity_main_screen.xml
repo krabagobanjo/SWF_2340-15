@@ -52,6 +52,22 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/title_activity_view_reports"
+        android:id="@+id/button8"
+        android:layout_gravity="center_horizontal"
+        android:onClick="viewReports" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_sale_report"
+        android:id="@+id/button7"
+        android:layout_gravity="center_horizontal"
+        android:onClick="makeReport" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/action_sign_out"
         android:onClick="logout"
         android:id="@+id/button3"

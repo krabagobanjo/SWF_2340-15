@@ -79,7 +79,7 @@ class DatabaseStrings implements BaseColumns {
         //DROP TABLE IF EXISTS users;
         public static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-        //Delete all entries from table: DELETE FROM users
+        //Delete all entries from table: DELETE FROM reports
         public static final String DELETE_ALL = "DELETE FROM " + TABLE_NAME;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Contains User information needed by the application.
  */
-public class User implements Serializable{
+public class User implements Serializable {
     private String name;
     private final String username;
     private String password;
@@ -142,8 +142,8 @@ public class User implements Serializable{
      * @param other the username of the user this is reported to
      * @param price the price of the item in this report
      */
-    public void addReportedSale(String item, String other, double price) {
-        this.salesReported.add(new SaleReport(item, this.username, other, price));
+    public void addReportedSale(String item, String other, double price, String location) {
+        this.salesReported.add(new SaleReport(this.username, item, price, location));
     }
 
     /**
@@ -230,26 +230,19 @@ public class User implements Serializable{
      * @return true if the usernames match
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object other) {
+        if (null == other) {
+            return false;
+        }
+        if (this == other) {
             return true;
         }
-        if (! (o instanceof User)) {
+        if (!(other instanceof SaleReport)) {
             return false;
         }
-
-        User user = (User) o;
-
-        if (!username.equals(user.username)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return username.hashCode();
+        User tempUser = (User) other;
+        return (this.getName().equals(tempUser.getName())
+                && this.getEmail().equals(tempUser.getEmail()));
     }
 
     public String toString() {
