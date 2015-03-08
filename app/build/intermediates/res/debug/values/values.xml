@@ -258,6 +258,7 @@
     <string name="forgot_pass">Forgot password?</string>
     <string name="prompt_email">Email Address</string>
     <string name="prompt_item">Item</string>
+    <string name="prompt_location">Location</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_password_confirm">Confirm Password</string>
@@ -276,9 +277,12 @@
     <string name="title_activity_add_friend">Add Friend</string>
     <string name="title_activity_login">Log In</string>
     <string name="title_activity_main">Home</string>
-    <string name="title_activity_sale_request">Sale Request</string>
+    <string name="title_activity_recover_password">Recover Password</string>
+    <string name="title_activity_sale_report">Add Report</string>
+    <string name="title_activity_sale_request">Add Request</string>
     <string name="title_activity_view_friends">View Friends</string>
     <string name="title_activity_view_items">View Items</string>
+    <string name="title_activity_view_reports">View Reports</string>
     <!-- From: file:/D:/Documents/GitHub/SWF_2340-15/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

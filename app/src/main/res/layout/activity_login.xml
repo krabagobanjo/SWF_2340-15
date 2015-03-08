@@ -72,12 +72,15 @@
                 android:layout_gravity="start|top"/>
 
             <Button
+                android:id="@+id/recover_btn"
+                style="?android:textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/forgot_pass"
-                android:id="@+id/recover_btn"
-                android:layout_gravity="center_horizontal|bottom"
-                android:onClick="recovery"/>
+                android:textStyle="bold"
+                android:onClick="recovery"
+                android:layout_gravity="center_horizontal|bottom"/>
         </FrameLayout>
 
     </LinearLayout>
