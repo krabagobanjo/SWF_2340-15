@@ -41,7 +41,7 @@ public class Login extends Activity {
     }
 
     /**
-     * Checks the credientials and attempts a login.
+     * Checks the credentials and attempts a login.
      */
     public void login(View view) {
         String username = mUserView.getText().toString();
@@ -54,6 +54,7 @@ public class Login extends Activity {
             ((ShoppingWithFriends) this.getApplication()).getUsers().get(username).setAuth(true);
             ((ShoppingWithFriends) this.getApplication()).save();
             startActivity(intent);
+
             this.finish();
         } else {
             infoTextView.setText("Error: Unknown username/password combination!");
@@ -73,7 +74,7 @@ public class Login extends Activity {
     }
 
     /**
-     * Alows the user to recover their account.
+     * Allows the user to recover their account.
      */
     public void recovery(View view) {
         startActivity(new Intent(this, RecoverPassword.class));

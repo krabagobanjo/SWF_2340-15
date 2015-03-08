@@ -14,7 +14,6 @@ public class MainActivity extends Activity {
 
     /**
      * Creates the screen on startup.
-     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,8 @@ public class MainActivity extends Activity {
      */
     public void buttonPressed(View view) {
         if (view == findViewById(R.id.sign_in)) {
-            startActivity(new Intent(this, Login.class));
+            Intent login = new Intent(this, Login.class);
+            startActivity(login);
         } else if (view == findViewById(R.id.register)) {
             Intent intent = new Intent(this, Register.class);
             startActivity(intent);
