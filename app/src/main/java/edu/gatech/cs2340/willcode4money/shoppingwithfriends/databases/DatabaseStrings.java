@@ -72,11 +72,18 @@ class DatabaseStrings implements BaseColumns {
         public static final int DATABASE_VERSION = 1;
 
         public static final String TABLE_NAME = "reports";
+        public static final String COLUMN_NAME_ITEM = "item";
+        public static final String COLUMN_NAME_OWNER = "owner";
+        public static final String COLUMN_NAME_PRICE = "price";
+        public static final String COLUMN_NAME_LOCATION = "location";
 
         //CREATE TABLE reports(_ID TEXT PRIMARY KEY,user TEXT
-        public static final String CREATE_TABLE = "";
+        public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+                "(_ID TEXT PRIMARY KEY, " + COLUMN_NAME_ITEM + " TEXT, " +
+                COLUMN_NAME_OWNER + " TEXT, " + COLUMN_NAME_PRICE + " TEXT, " +
+                COLUMN_NAME_LOCATION + " TEXT)";
 
-        //DROP TABLE IF EXISTS users;
+        //DROP TABLE IF EXISTS reports;
         public static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
         //Delete all entries from table: DELETE FROM reports

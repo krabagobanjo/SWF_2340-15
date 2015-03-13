@@ -33,6 +33,7 @@ public class ShoppingWithFriends extends Application {
         usersDB = new UserDBHelper(this);
         Log.d("[DATABASE]", "Reading from disk!");
         userMap = usersDB.readUsers();
+        reportMap = usersDB.readReports();
         Log.d("[DATABASE]", "Done reading!");
     }
 

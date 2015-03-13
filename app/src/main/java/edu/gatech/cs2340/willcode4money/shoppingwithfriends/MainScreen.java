@@ -19,7 +19,7 @@ public class MainScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
-        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+        //if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
 
         if (!((ShoppingWithFriends) this.getApplication()).getValidReports().isEmpty()) {
             Toast.makeText(getApplicationContext(), "You have Reports!",

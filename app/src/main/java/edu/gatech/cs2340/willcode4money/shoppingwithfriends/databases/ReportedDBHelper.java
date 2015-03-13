@@ -1,17 +1,30 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleReport;
 
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.COLUMN_NAME_ITEM;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.COLUMN_NAME_LOCATION;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.COLUMN_NAME_OWNER;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.COLUMN_NAME_PRICE;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.CREATE_TABLE;
 import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DATABASE_NAME;
 import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DATABASE_VERSION;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DELETE_ALL;
 import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.DROP_TABLE;
+import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.DatabaseStrings.ReportStrings.TABLE_NAME;
 
 /**
  * An SQLite database helper that allows the application to save and retrieve sale report information.
@@ -30,7 +43,8 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL(CREATE_TABLE);
+        Log.d("REPORTS DB", "ON CREATE CALLED");
+        db.execSQL(CREATE_TABLE);
     }
 
     /**
@@ -47,36 +61,71 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
 
     /**
      * Reads from disk all users' sale reports
-     * @param users - a map containing the users in the application
      */
-    public void readAllReports(Map<String, User> users) {
+    public Map<String, List<SaleReport>> readAllReports() {
+        Map<String, List<SaleReport>> reports = new HashMap<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        for (User user : users.values()) {
-            this.readReports(db, user);
+        String[] proj = {
+                COLUMN_NAME_ITEM,
+                COLUMN_NAME_OWNER,
+                COLUMN_NAME_PRICE,
+                COLUMN_NAME_LOCATION};
+        String sortOrder = COLUMN_NAME_ITEM + " DESC";
+        Cursor c = db.query(TABLE_NAME,
+                proj,
+                null,
+                null,
+                null,
+                null,
+                sortOrder);
+        if (c.moveToFirst()) {
+            do {
+                String item = c.getString(0);
+                String owner = c.getString(1);
+                String location = c.getString(3);
+                double price = Double.parseDouble(c.getString(2));
+                Log.d("Read Reports", "Read:" + item + "," + owner + "," + price + "," + location + "!");
+                if (!reports.containsKey(item)) {
+                    List<SaleReport> list = new ArrayList<SaleReport>();
+                    list.add(new SaleReport(owner, item, price, location));
+                    reports.put(item, list);
+                } else {
+                    reports.get(item).add(new SaleReport(owner, item, price, location));
+                }
+            } while (c.moveToNext());
         }
+        c.close();
         db.close();
-    }
-
-    //Reads the sale reports for a user from disk
-    private void readReports(SQLiteDatabase db, User user) {
-        //user.setSalesReported(null);
-        //user.setSalesReceived(null);
+        return reports;
     }
 
     /**
-     * Saves to disk all users' sale reports
-     * @param users - a map containing the users in the application
+     * Saves to disk all items' sale reports
+     * @param reports -- the bucket of reports to save
      */
-    public void saveAllReports(Map<String, User> users) {
+    public void saveAllReports(Map<String, List<SaleReport>> reports) {
         SQLiteDatabase db = this.getWritableDatabase();
-        for (User user : users.values()) {
-            this.saveReports(db, user);
+        db.execSQL(DELETE_ALL);
+        for (List<SaleReport> list : reports.values()) {
+            this.saveReports(db, list);
         }
         db.close();
     }
 
-    //Saves the sale reports for a user to the disk
-    private void saveReports(SQLiteDatabase db, User user) {
-
+    //Saves the sale reports for an item to the disk
+    private void saveReports(SQLiteDatabase db, List<SaleReport> list) {
+        for (SaleReport report : list) {
+            String owner = report.getOwner();
+            String item = report.getItem();
+            String price = (Double.valueOf(report.getPrice())).toString();
+            String location = report.getLocation();
+            Log.d("Save Reports", "Saved:" + item + "," + owner + "," + price + "," + location + "!");
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_NAME_OWNER, owner);
+            values.put(COLUMN_NAME_ITEM, item);
+            values.put(COLUMN_NAME_PRICE, price);
+            values.put(COLUMN_NAME_LOCATION, location);
+            db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        }
     }
 }

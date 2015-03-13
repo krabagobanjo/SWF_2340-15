@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleReport;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
@@ -55,18 +56,19 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     }
 
     /**
-     * Saves the user information to disk for persistence
+     * Saves the user and report information to disk for persistence
      * @param application - the Application to save
      */
     public void saveUsers(Application application) {
         Map<String, User> users = ((ShoppingWithFriends) application).getUsers();
+        Map<String, List<SaleReport>> reports = ((ShoppingWithFriends) application).getReportBucket();
         SQLiteDatabase db = this.getWritableDatabase();
         for (User user : users.values()) {
             this.saveUser(db, user);
         }
         db.close();
         requestsDBhelper.saveAllRequests(users);
-        reportedDBhelper.saveAllReports(users);
+        reportedDBhelper.saveAllReports(reports);
     }
 
     //Saves the information for each user to disk.
@@ -135,9 +137,16 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         this.readFriends(db, users);
         this.readRatings(db, users);
         db.close();
-        reportedDBhelper.readAllReports(users);
         requestsDBhelper.readAllRequests(users);
         return users;
+    }
+
+    /**
+     * Reads report information from the disk
+     * @return the bucket of reports
+     */
+    public Map<String, List<SaleReport>> readReports() {
+        return reportedDBhelper.readAllReports();
     }
 
     //Reads the information for each user from disk.

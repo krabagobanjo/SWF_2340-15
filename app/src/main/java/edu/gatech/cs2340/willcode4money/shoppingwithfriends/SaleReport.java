@@ -1,14 +1,13 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
@@ -46,6 +45,10 @@ public class SaleReport extends Activity implements Serializable {
         if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
+    /**
+     * Creates a sale report based on user data
+     * @param view - the button pressed
+     */
     public void makeReport(View view) {
         EditText input1 = (EditText) findViewById(R.id.itemReport);
         EditText input2 = (EditText) findViewById(R.id.priceReport);
@@ -62,7 +65,7 @@ public class SaleReport extends Activity implements Serializable {
         }
 
 
-        if (itemReported != "" && locationReported != "") {
+        if (!itemReported.equals("") && !locationReported.equals("")) {
             this.price = priceReported;
             this.item = itemReported;
             this.location = locationReported;
