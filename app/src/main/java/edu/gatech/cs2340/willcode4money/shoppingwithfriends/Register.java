@@ -32,11 +32,11 @@ public class Register extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        nameEditText = (EditText) findViewById(R.id.nameText);
-        emailEditText = (EditText) findViewById(R.id.emailText);
-        usernameEditText = (EditText) findViewById(R.id.usernameET);
-        passwordEditText = (EditText) findViewById(R.id.passwordET);
-        passwordConfirmEditText = (EditText) findViewById(R.id.passwordConfirmET);
+        nameEditText = (EditText) findViewById(R.id.register_name);
+        emailEditText = (EditText) findViewById(R.id.register_email);
+        usernameEditText = (EditText) findViewById(R.id.register_username);
+        passwordEditText = (EditText) findViewById(R.id.register_password);
+        passwordConfirmEditText = (EditText) findViewById(R.id.register_password_confirm);
     }
 
     /**
@@ -56,7 +56,7 @@ public class Register extends Activity {
                 Toast.makeText(getApplicationContext(), "Success",
                         Toast.LENGTH_LONG).show();
                 //Remove cancel button from screen
-                findViewById(R.id.cancelBtn).setVisibility(View.INVISIBLE);
+                findViewById(R.id.reg_cancelBtn).setVisibility(View.INVISIBLE);
                 ((ShoppingWithFriends) this.getApplication()).save();
                 //Wait 1 second before returning back
                 new Handler().postDelayed(new Runnable() {

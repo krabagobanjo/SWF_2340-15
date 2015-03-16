@@ -50,9 +50,9 @@ public class SaleReport extends Activity implements Serializable {
      * @param view - the button pressed
      */
     public void makeReport(View view) {
-        EditText input1 = (EditText) findViewById(R.id.itemReport);
-        EditText input2 = (EditText) findViewById(R.id.priceReport);
-        EditText input3 = (EditText) findViewById(R.id.locationReport);
+        EditText input1 = (EditText) findViewById(R.id.report_item);
+        EditText input2 = (EditText) findViewById(R.id.report_price);
+        EditText input3 = (EditText) findViewById(R.id.report_location);
 
         owner = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
         String itemReported = input1.getText().toString();
