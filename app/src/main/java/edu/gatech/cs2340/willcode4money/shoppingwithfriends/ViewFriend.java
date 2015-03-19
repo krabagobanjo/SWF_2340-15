@@ -38,7 +38,7 @@ public class ViewFriend extends Activity {
             friendsList[i] = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().get(i);
             listName[i] = friendsList[i].getName();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, listName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_friends_item, listName);
         ListView listview = (ListView) findViewById(R.id.friends_list);
         listview.setAdapter(adapter);
         registerForContextMenu(listview);
