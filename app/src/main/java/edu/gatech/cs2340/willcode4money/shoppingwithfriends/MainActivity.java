@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * The main splash screen for Shopping with Friends

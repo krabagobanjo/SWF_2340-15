@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * Contains a request made by a user for certain items
