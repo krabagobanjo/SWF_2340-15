@@ -6,26 +6,24 @@
     tools:context="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ViewReports">
 
     <TextView
-        android:id="@+id/report_list_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_activity_list_reports"
+        android:text="Report List"
+        android:id="@+id/report_list_title"
         android:layout_gravity="center_horizontal"
         android:textColor="#000000"
         android:textStyle="bold|italic"
         android:textSize="30sp" />
 
     <ListView
-        android:id="@+id/report_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/report_list"
         android:layout_gravity="center_horizontal" />
 
     <ImageView
-        android:id="@+id/image_grumpy_cat"
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cat"
-        android:contentDescription="@string/grumpy_cat_descr" />
-
+        android:src="@drawable/cat" />
 </LinearLayout>

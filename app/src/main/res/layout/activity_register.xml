@@ -4,44 +4,57 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/register_username"
+        android:id="@+id/usernameET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_username"
         android:inputType="text"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:singleLine="true" />
 
     <EditText
-        android:id="@+id/register_name"
+        android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_name"
         android:inputType="text"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:id="@+id/register_email"
+        android:id="@+id/emailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"/>
 
     <EditText
-        android:id="@+id/register_password"
+        android:id="@+id/passwordET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_password"
+        android:imeActionId="@+id/register"
+        android:imeActionLabel="@string/register"
+        android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:singleLine="true" />
 
     <EditText
-        android:id="@+id/register_password_confirm"
+        android:id="@+id/passwordConfirmET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/prompt_password_confirm"
+        android:imeActionId="@+id/register"
+        android:imeActionLabel="@string/register"
+        android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:singleLine="true" />
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -60,7 +73,7 @@
 
     <Button
         style="?android:textAppearanceSmall"
-        android:id="@+id/reg_cancelBtn"
+        android:id="@+id/cancelBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -70,4 +83,5 @@
         android:layout_gravity="top|end" />
 
     </FrameLayout>
+
 </LinearLayout>

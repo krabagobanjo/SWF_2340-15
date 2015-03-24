@@ -29,7 +29,7 @@ public class ViewReports extends Activity {
         for (int i = 0; i < reportArray.length; i++) {
             reportList[i] = reportArray[i].toString();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_reports_item, reportList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_reports, reportList);
         ListView listview = (ListView) findViewById(R.id.report_list);
         listview.setAdapter(adapter);
     }
