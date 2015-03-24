@@ -62,7 +62,7 @@ public class ViewFriend extends Activity {
     }
 
     /**
-     * Creates and displays the contextmenu for options
+     * Creates and displays the context menu for options
      *
      * @param menu     The context menu that is built.
      * @param v        The view of the context menu

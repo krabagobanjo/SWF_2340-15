@@ -19,7 +19,7 @@
                 android:id="@+id/hybrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Hybrid "
+                android:text="@string/Hybrid"
                 />
         </RelativeLayout>
 
@@ -36,7 +36,7 @@
                 android:id="@+id/satellite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Satellite " />
+                android:text="@string/Satellite" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -52,7 +52,7 @@
                 android:id="@+id/terrain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Terrain " />
+                android:text="@string/Terrain" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -68,7 +68,7 @@
                 android:id="@+id/none"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" None " />
+                android:text="@string/None" />
         </RelativeLayout>
 
     <fragment

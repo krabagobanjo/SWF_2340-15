@@ -121,7 +121,8 @@ public class User implements Serializable {
 
     /**
      * Adds a sale request to this user's list of sale requests
-     * @param
+     * @param item item will be requested
+     * @param price price will be requested
      */
     public void addRequest(String item, double price) {
         SaleRequest request = new SaleRequest(this.username, item, price);

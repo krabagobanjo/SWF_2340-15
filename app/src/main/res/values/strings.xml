@@ -28,5 +28,18 @@
     <string name="title_activity_view_items">View Requests</string>
     <string name="title_activity_view_reports">View Reports</string>
     <string name="title_activity_maps">Map</string>
+    <string name="Name">Name</string>
+    <string name="Hybrid">Hybrid</string>
+    <string name="Email">E-mail</string>
+    <string name="Item">Item</string>
+    <string name="Satellite">Satellite</string>
+    <string name="Rating">Rating</string>
+    <string name="Price">Price</string>
+    <string name="Terrain">Terrain</string>
+    <string name="sales">#sales</string>
+    <string name="Location">Location</string>
+    <string name="None">None</string>
+    <string name="Name2">Name</string>
+    <string name="GoogleMap">View the location on Google map</string>
 
 </resources>

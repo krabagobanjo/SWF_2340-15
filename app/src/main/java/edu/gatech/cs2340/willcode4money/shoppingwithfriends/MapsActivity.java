@@ -1,6 +1,5 @@
  package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -23,16 +22,12 @@ import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private String location;
     private double latitude;
     private double longitude;
     private List<Address> geocodeMatches = null;
-    private CheckBox hybrid_mode;
-    private CheckBox satellite_mode;
-    private CheckBox terrain_mode;
-    private CheckBox none_mode;
-    View tempV = null;
-    int tempId = -1;
+
+    private View tempV = null;
+    private int tempId = -1;
 
 
     @Override
@@ -40,6 +35,11 @@ public class MapsActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Intent intent = getIntent();
+        CheckBox hybrid_mode;
+        CheckBox satellite_mode;
+        CheckBox terrain_mode;
+        CheckBox none_mode;
+        String location;
         location = (String) intent.getSerializableExtra("Location_info");
         //location = "North AvNW Atlanta GA 30332";
         hybrid_mode = (CheckBox) findViewById(R.id.hybrid);
@@ -53,7 +53,7 @@ public class MapsActivity extends FragmentActivity {
             e.printStackTrace();
         }
 
-        if ((geocodeMatches.isEmpty()) || (geocodeMatches == null)) {
+        if ((geocodeMatches == null) || (geocodeMatches.isEmpty())) {
             Toast.makeText(MapsActivity.this, "No matches were found or there is no backend service!",
                     Toast.LENGTH_SHORT).show();
         } else {

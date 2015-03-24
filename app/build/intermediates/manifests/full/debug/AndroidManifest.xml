@@ -30,6 +30,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
         android:name="edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends"
         android:allowBackup="true"
@@ -99,11 +103,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <uses-feature
-            android:glEsVersion="0x00020000"
-            android:required="true" >
-        </uses-feature>
 
         <meta-data
             android:name="com.google.android.gms.version"

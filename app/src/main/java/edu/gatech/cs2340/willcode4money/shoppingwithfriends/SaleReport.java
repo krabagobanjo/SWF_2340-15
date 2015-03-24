@@ -142,7 +142,7 @@ public class SaleReport extends Activity implements Serializable {
 
     /**
      * sets the owner
-     * @param owner
+     * @param owner owenr will be set
      */
     public void setOwner(String owner) {
         this.owner = owner;
