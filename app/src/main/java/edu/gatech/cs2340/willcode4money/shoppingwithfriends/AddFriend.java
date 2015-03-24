@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 public class AddFriend extends Activity {
     private String currUser;

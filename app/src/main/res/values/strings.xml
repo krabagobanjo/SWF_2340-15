@@ -27,5 +27,6 @@
     <string name="prompt_location">Location</string>
     <string name="title_activity_view_items">View Requests</string>
     <string name="title_activity_view_reports">View Reports</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

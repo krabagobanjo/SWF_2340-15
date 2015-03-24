@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * Displays a friend's details.

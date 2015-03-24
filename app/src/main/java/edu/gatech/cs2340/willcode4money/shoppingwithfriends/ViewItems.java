@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * user's requested item list with price

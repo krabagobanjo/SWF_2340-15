@@ -226,7 +226,7 @@ public class User implements Serializable {
 
     /**
      * Determines if two users are the same by using their usernames
-     * @param o the user to compare to
+     * @param other the user to compare to
      * @return true if the usernames match
      */
     @Override
