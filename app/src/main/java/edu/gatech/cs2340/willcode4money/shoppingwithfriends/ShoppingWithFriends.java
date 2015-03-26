@@ -42,7 +42,7 @@ public class ShoppingWithFriends extends Application {
     }
 
     /**
-     * Saves this application's data to disk. To be run after all methods which nodify
+     * Saves this application's data to disk. To be run after all methods which modify
      * application data.
      */
     public void save() {

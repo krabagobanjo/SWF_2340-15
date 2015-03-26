@@ -9,7 +9,7 @@ abstract class DatabaseStrings implements BaseColumns {
     /**
      * Contains values required by the UserDBHelper
      */
-    public interface UserStrings {
+    public abstract class UserStrings {
 
         //Constant values
         public static final int DATABASE_VERSION = 1;
@@ -32,15 +32,12 @@ abstract class DatabaseStrings implements BaseColumns {
 
         //DROP TABLE IF EXISTS users;
         public static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-
-        //Delete all entries from table: DELETE FROM users
-        public static final String DELETE_ALL = "DELETE FROM " + TABLE_NAME;
     }
 
     /**
      * Contains values required by the RequestsDBHelper
      */
-    public interface RequestStrings {
+    public abstract class RequestStrings {
 
         //Constant values
         public static final String DATABASE_NAME = "Requests.db";
@@ -65,7 +62,7 @@ abstract class DatabaseStrings implements BaseColumns {
     /**
      * Contains values required by the ReportedDBHelper
      */
-    public interface ReportStrings {
+    public abstract class ReportStrings {
 
         //Constant values
         public static final String DATABASE_NAME = "ReportedSales.db";

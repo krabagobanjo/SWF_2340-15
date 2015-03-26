@@ -211,14 +211,14 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     //Reads ratings information from the database and saves it to each user.
     private void readRatings(SQLiteDatabase db, Map<String, User> users) {
         Set<String> usernames = users.keySet();
-        String[] proj = {COLUMN_NAME_RATINGS};
+        String[] projection = {COLUMN_NAME_RATINGS};
         String sortOrder = COLUMN_NAME_ID + " DESC";
         for (String username : usernames) {
             User user = users.get(username);
             String selection = COLUMN_NAME_ID + "='" + username + "'";
             Cursor c = db.query(
                     TABLE_NAME,
-                    proj,
+                    projection,
                     selection,
                     null,
                     null,

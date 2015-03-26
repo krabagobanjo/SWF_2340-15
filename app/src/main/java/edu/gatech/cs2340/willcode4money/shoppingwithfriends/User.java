@@ -8,17 +8,16 @@ import java.util.List;
  * Contains User information needed by the application.
  */
 public class User implements Serializable {
-    private String name;
+    private final String name;
     private final String username;
-    private String password;
+    private final String password;
     private final String email;
-    private List<Integer> ratings;
+    private final List<Integer> ratings;
     private boolean authenticated;
 
     private List<User> friends;
     private List<SaleRequest> requests;
-    private List<SaleReport> salesReported;
-    private List<SaleReport> salesReceived;
+    private final List<SaleReport> salesReported;
 
     public User(String username, String password, String email, String name) {
         this.username = username;
@@ -29,7 +28,6 @@ public class User implements Serializable {
         this.ratings = new ArrayList<>();
         this.requests = new ArrayList<>();
         this.salesReported = new ArrayList<>();
-        this.salesReceived = new ArrayList<>();
         this.friends = new ArrayList<>();
     }
 
@@ -63,7 +61,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Removes a friend from the user's friends list. Also removes this user from the other's friends list
+     * Removes a friend from the user's friends list. Also removes this user from the other user's friends list
      * @param friend The friend to delete the friendship with.
      */
     public void removeFriend(User friend) {
@@ -178,6 +176,8 @@ public class User implements Serializable {
         if (!(other instanceof SaleReport)) {
             return false;
         }
+        //It can never throw the exception
+        //noinspection ConstantConditions
         User tempUser = (User) other;
         return (this.getName().equals(tempUser.getName())
                 && this.getEmail().equals(tempUser.getEmail()));
