@@ -9,7 +9,6 @@ import android.widget.Toast;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * Report of sales found by users.

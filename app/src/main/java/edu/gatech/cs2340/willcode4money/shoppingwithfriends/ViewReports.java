@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * user's requested item list with price
