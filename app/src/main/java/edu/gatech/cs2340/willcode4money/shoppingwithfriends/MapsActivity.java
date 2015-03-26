@@ -17,8 +17,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
-
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.

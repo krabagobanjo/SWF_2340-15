@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 public class SaleInfo extends Activity {
     private String loCation;

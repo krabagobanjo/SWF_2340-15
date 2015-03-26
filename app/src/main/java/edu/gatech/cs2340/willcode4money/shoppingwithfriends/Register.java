@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import java.util.Map;
 
-import edu.gatech.cs2340.willcode4money.shoppingwithfriend.R;
 
 /**
  * Implementation of user registration.
