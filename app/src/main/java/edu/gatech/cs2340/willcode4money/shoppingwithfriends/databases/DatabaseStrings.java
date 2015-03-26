@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 /**
  * A class to contain constant values used by the databases in this application.
  */
-class DatabaseStrings implements BaseColumns {
+abstract class DatabaseStrings implements BaseColumns {
     /**
      * Contains values required by the UserDBHelper
      */

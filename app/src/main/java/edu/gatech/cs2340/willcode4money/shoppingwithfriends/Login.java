@@ -41,7 +41,7 @@ public class Login extends Activity {
     }
 
     /**
-     * Checks the credientials and attempts a login.
+     * Checks the credentials and attempts a login.
      */
     public void login(View view) {
         String username = mUserView.getText().toString();

@@ -72,19 +72,19 @@ class RequestsDBHelper extends SQLiteOpenHelper implements BaseColumns {
     //Loads the sale requests from the disk for a certain user
     private void readRequests(SQLiteDatabase db, User user) {
         String username = user.getUsername();
-        String[] proj = {
+        String[] projection = {
                 COLUMN_NAME_ITEM,
                 COLUMN_NAME_PRICE};
         String selection = COLUMN_NAME_USER + "='" + username + "'";
         String sortOrder = COLUMN_NAME_ITEM + " DESC";
         Cursor c = db.query(TABLE_NAME,
-                proj,
+                projection,
                 selection,
                 null,
                 null,
                 null,
                 sortOrder);
-        List<SaleRequest> req = new ArrayList<SaleRequest>();
+        List<SaleRequest> req = new ArrayList<>();
         if (c.moveToFirst()) {
             do {
                 req.add(new SaleRequest(username, c.getString(0), Double.parseDouble(c.getString(1))));

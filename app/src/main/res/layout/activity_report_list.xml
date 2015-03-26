@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Report List"
+        android:text="@string/title_activity_report_list"
         android:id="@+id/report_list_title"
         android:layout_gravity="center_horizontal"
         android:textColor="#000000"
@@ -25,5 +25,6 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/heavy_breathing"
         android:src="@drawable/cat" />
 </LinearLayout>

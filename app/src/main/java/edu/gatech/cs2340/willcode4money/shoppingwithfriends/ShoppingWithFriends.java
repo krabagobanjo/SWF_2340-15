@@ -15,14 +15,14 @@ import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelp
  */
 public class ShoppingWithFriends extends Application {
     //Contains the registered users in the application
-    private Map<String, User> userMap = new HashMap<String, User>();
-    private Map<String, List<SaleReport>> reportMap = new HashMap<String, List<SaleReport>>();
+    private Map<String, User> userMap = new HashMap<>();
+    private Map<String, List<SaleReport>> reportMap = new HashMap<>();
 
     //The username of the currently logged-in user
     private String currentUserAsKey = "";
 
     //The database information is saved to and read from
-    UserDBHelper usersDB;
+    private UserDBHelper usersDB;
 
     /**
      * Opens or creates the save-state database and reads in any information that exists.
@@ -39,10 +39,6 @@ public class ShoppingWithFriends extends Application {
 
     public Map<String, List<SaleReport>> getReportBucket() {
         return reportMap;
-    }
-
-    public void setReportMap(Map<String, List<SaleReport>> reportMap) {
-        this.reportMap = reportMap;
     }
 
     /**
@@ -64,20 +60,12 @@ public class ShoppingWithFriends extends Application {
     }
 
     /**
-     * Sets the list of registered users. Mainly used for loading saved data on open.
-     * @param users the list of registered users
-     */
-    public void setUsers(Map<String, User> users) {
-        this.userMap = users;
-    }
-
-    /**
      * Gets a list of reports posted that match user requests
      * @return the list of valid SaleReport 's
      */
     public List<SaleReport> getValidReports() {
         //the return list
-        List<SaleReport> validReports = new ArrayList<SaleReport>();
+        List<SaleReport> validReports = new ArrayList<>();
 
         //get the current user class
         User tempUser = userMap.get(currentUserAsKey);

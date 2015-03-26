@@ -4,11 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleRequest"
-    android:weightSum="1"><![CDATA[>
-
-
-
-    ]]>
+    android:weightSum="1">
 
     <EditText
         android:layout_width="354dp"
@@ -35,8 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cancel"
-            android:id="@+id/cancleBtn"
-            android:layout_gravity="right|top"
+            android:id="@+id/cancelBtn"
+            android:layout_gravity="end|top"
             android:textStyle="bold"
             android:onClick="cancel" />
 
@@ -45,10 +41,9 @@
             android:layout_height="wrap_content"
             android:text="@string/title_activity_sale_request"
             android:id="@+id/requestBtn"
-            android:layout_gravity="left|top"
+            android:layout_gravity="start|top"
             android:textStyle="bold"
-            android:onClick="makeRequest"
-            android:nestedScrollingEnabled="false" />
+            android:onClick="makeRequest" />
     </FrameLayout>
 
 </LinearLayout>

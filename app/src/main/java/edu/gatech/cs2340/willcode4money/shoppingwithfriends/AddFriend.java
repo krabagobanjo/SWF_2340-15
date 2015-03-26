@@ -22,19 +22,21 @@ public class AddFriend extends Activity {
      * @param view the add friend button
      */
     public void addFriend(View view) {
-        EditText etxt1 = (EditText) findViewById(R.id.addFriend_name);
-        EditText etxt2 = (EditText) findViewById(R.id.addFriend_email);
-        String name = etxt1.getText().toString();
-        String email = etxt2.getText().toString();
+        EditText nameBox = (EditText) findViewById(R.id.addFriend_name);
+        EditText emailBox = (EditText) findViewById(R.id.addFriend_email);
+        String name = nameBox.getText().toString();
+        String email = emailBox.getText().toString();
         User[] users = new User[((ShoppingWithFriends) this.getApplication()).getUsers().size()];
         users = ((ShoppingWithFriends) this.getApplication()).getUsers().values().toArray(users);
         User cUser = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser);
 
         boolean foundFriend = false;
-        for (int i = 0; i < users.length; i++) {
-            if (users[i].getEmail().equals(email) && users[i].getName().equals(name) && !users[i].equals(cUser)
-                    && !((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().contains(users[i])) {
-                ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).addFriend(users[i]);
+        for (User user : users) {
+            if (user.getEmail().equals(email) && user.getName().equals(name) && !user.equals(cUser)
+                    && !((ShoppingWithFriends) this.getApplication()).getUsers().get(
+                    currUser).getFriends().contains(user)) {
+                ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).addFriend(
+                        user);
                 foundFriend = true;
                 break;
             }
@@ -49,9 +51,9 @@ public class AddFriend extends Activity {
             Toast.makeText(getApplicationContext(), "Couldn't find user",
                     Toast.LENGTH_LONG).show();
         }
-        etxt1.setText("");
-        etxt2.setText("");
-        etxt1.requestFocus();
+        nameBox.setText("");
+        emailBox.setText("");
+        nameBox.requestFocus();
     }
 
 }

@@ -88,18 +88,8 @@ public class SaleRequest extends Activity implements Serializable {
         return maxPrice;
     }
 
-    /**
-     * Updates the max. price the owner is looking for
-     * @param maxPrice the new price of the requested item
-     */
-    public void setMaxPrice(double maxPrice) {
-        this.maxPrice = maxPrice;
-        ((ShoppingWithFriends) this.getApplication()).save();
-    }
-
     @Override
     public String toString() {
-        String a = getOwner() + ": " + getItem() + " @ $" + getMaxPrice();
-        return a;
+        return getOwner() + ": " + getItem() + " @ $" + getMaxPrice();
     }
 }

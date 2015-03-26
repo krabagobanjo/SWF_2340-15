@@ -65,14 +65,14 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
     public Map<String, List<SaleReport>> readAllReports() {
         Map<String, List<SaleReport>> reports = new HashMap<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        String[] proj = {
+        String[] projection = {
                 COLUMN_NAME_ITEM,
                 COLUMN_NAME_OWNER,
                 COLUMN_NAME_PRICE,
                 COLUMN_NAME_LOCATION};
         String sortOrder = COLUMN_NAME_ITEM + " DESC";
         Cursor c = db.query(TABLE_NAME,
-                proj,
+                projection,
                 null,
                 null,
                 null,
@@ -86,7 +86,7 @@ class ReportedDBHelper extends SQLiteOpenHelper implements BaseColumns {
                 double price = Double.parseDouble(c.getString(2));
                 Log.d("Read Reports", "Read:" + item + "," + owner + "," + price + "," + location + "!");
                 if (!reports.containsKey(item)) {
-                    List<SaleReport> list = new ArrayList<SaleReport>();
+                    List<SaleReport> list = new ArrayList<>();
                     list.add(new SaleReport(owner, item, price, location));
                     reports.put(item, list);
                 } else {

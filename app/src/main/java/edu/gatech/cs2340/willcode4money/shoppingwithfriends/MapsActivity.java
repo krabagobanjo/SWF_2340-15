@@ -117,7 +117,7 @@ public class MapsActivity extends FragmentActivity {
         mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("HERE"));
     }
 
-    private CheckBox.OnClickListener CheckBoxOnClickListener = new CheckBox.OnClickListener() {
+    private final CheckBox.OnClickListener CheckBoxOnClickListener = new CheckBox.OnClickListener() {
         public void onClick(View v) {
             setCheckB(v);
         }

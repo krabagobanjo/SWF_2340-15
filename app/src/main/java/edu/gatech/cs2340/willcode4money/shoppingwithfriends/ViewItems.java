@@ -24,7 +24,6 @@ public class ViewItems extends Activity {
         }
         Object[] requestArray = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getRequests().toArray();
         String[] itemsList = new String[requestArray.length];
-        double[] priceList = new double[requestArray.length];
         for (int i = 0; i < requestArray.length; i++) {
             itemsList[i] = requestArray[i].toString();
         }
