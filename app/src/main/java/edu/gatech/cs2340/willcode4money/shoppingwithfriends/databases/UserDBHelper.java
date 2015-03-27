@@ -71,8 +71,12 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         reportedDBhelper.saveAllReports(reports);
     }
 
-    //Saves the information for each user to disk.
-    private void saveUser(SQLiteDatabase db, User user) {
+    /**
+     * Saves the data for a specific user to the database
+     * @param db - the database to save to
+     * @param user - the user to save
+     */
+    public void saveUser(SQLiteDatabase db, User user) {
         //Save friends list as comma-separated string of usernames
         List<User> friends = user.getFriends();
         StringBuilder friendsList = new StringBuilder();
@@ -92,7 +96,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             rate.append(",");
         }
         if (!ratings.isEmpty()) {
-            friendsList.deleteCharAt(friendsList.length() - 1);
+            rate.deleteCharAt(rate.length() - 1);
         }
         String ratingString = rate.toString();
 

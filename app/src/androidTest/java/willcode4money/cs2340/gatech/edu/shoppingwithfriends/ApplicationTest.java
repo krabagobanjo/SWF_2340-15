@@ -1,23 +1,14 @@
 package willcode4money.cs2340.gatech.edu.shoppingwithfriends;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.InstrumentationTestCase;
 import android.test.TouchUtils;
 import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.security.Key;
-
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Register;
-
-import static android.app.PendingIntent.getActivity;
-import static android.support.v4.app.ActivityCompat.startActivity;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
