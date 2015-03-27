@@ -60,7 +60,7 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<Register> 
         }, 1200);
     }
 
-        public void testGood() throws Exception {
+    public void testGood() throws Exception {
         Button reg = (Button) activity.findViewById(R.id.registerBtn);
         uBox = (TextView) activity.findViewById(R.id.usernameET);
         name = (TextView) activity.findViewById(R.id.nameText);
