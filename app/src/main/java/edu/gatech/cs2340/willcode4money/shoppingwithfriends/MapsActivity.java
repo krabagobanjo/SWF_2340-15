@@ -207,8 +207,6 @@ import java.util.Locale;
         currentLatitude = location.getLatitude();
         currentLongitude = location.getLongitude();
 
-        String test_add = "121 Baker St NW, Atlanta, GA 30313";
-
         try{
             Addresses = new Geocoder(this, Locale.getDefault()).getFromLocationName(loCation,100);
             if(Addresses.size() > 1) {
