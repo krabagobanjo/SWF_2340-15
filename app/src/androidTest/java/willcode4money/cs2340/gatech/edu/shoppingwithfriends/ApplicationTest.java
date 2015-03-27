@@ -11,7 +11,8 @@ import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Register;
 
 /**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
+ * Tests new user Registration.
+ * Kyle Rabago-Banjo
  */
 public class ApplicationTest extends ActivityInstrumentationTestCase2<Register> {
 
@@ -53,10 +54,13 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<Register> 
     public void testFullBlank() throws Exception {
         Button reg = (Button) activity.findViewById(R.id.registerBtn);
         TouchUtils.clickView(this, reg);
-        assertFalse(activity.isFinishing());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() { assertTrue(activity.isFinishing()); }
+        }, 1200);
     }
 
-    public void testGood() throws Exception {
+        public void testGood() throws Exception {
         Button reg = (Button) activity.findViewById(R.id.registerBtn);
         uBox = (TextView) activity.findViewById(R.id.usernameET);
         name = (TextView) activity.findViewById(R.id.nameText);

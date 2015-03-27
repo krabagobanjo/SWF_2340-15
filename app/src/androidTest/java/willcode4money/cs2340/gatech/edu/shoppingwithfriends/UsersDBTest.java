@@ -13,6 +13,7 @@ import edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.UserDBHelp
 
 /**
  * Tests that the database saves user data correctly
+ * Tyler Smith
  */
 public class UsersDBTest extends ApplicationTestCase<ShoppingWithFriends> {
 
