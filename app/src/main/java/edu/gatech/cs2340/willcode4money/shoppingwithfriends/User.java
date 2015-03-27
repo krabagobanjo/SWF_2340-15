@@ -173,7 +173,7 @@ public class User implements Serializable {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof SaleReport)) {
+        if (!(other instanceof User)) {
             return false;
         }
         //It can never throw the exception
