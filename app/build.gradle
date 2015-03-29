@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'MyAndroidKey'
-            keyPassword '1234567'
-            storeFile file('C:/Users/Jeongsoo/keystores.jks')
-            storePassword '1234567'
+            keyAlias 'MyAndroid_release'
+            keyPassword '123568'
+            storeFile file('C:/Users/Jeongsoo/Desktop/GATECH/2015 SPRING/CS 2340/Group Project/SWF_2340-15/release_key.jks')
+            storePassword '123567'
         }
     }
     compileSdkVersion 22
