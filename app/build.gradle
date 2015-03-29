@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'MyAndroid_release'
             keyPassword '123568'
-            storeFile file('C:/Users/Jeongsoo/Desktop/GATECH/2015 SPRING/CS 2340/Group Project/SWF_2340-15/release_key.jks')
+            storeFile file('../release_key.jks')
             storePassword '123567'
         }
     }
