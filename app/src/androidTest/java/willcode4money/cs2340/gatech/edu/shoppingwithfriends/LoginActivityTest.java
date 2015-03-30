@@ -3,6 +3,7 @@ package willcode4money.cs2340.gatech.edu.shoppingwithfriends;
 import android.os.Handler;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import java.util.Map;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Login;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Register;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
 
@@ -33,23 +35,18 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<Login> {
         super.setUp();
         setActivityInitialTouchMode(false);
         activity = getActivity();
-
     }
 
-    public void testUIElements() throws Exception {
-        Button login = (Button) activity.findViewById(R.id.signinBtn);
-        Button cancel = (Button) activity.findViewById(R.id.button9);
-        mUserViewTesting = (TextView) activity.findViewById(R.id.username);
-        mPasswordViewTesting = (TextView) activity.findViewById(R.id.password);
-        assertEquals("Incorrect label", "Register", login.getText());
-        assertEquals("Incorrect label", "Cancel", cancel.getText());
-        assertEquals("Incorrect hint", "Username", mUserViewTesting.getHint());
-        assertEquals("Incorrect hint", "Name", mPasswordViewTesting.getHint());
-    }
-
-    public void testLogin() throws  Exception {
-
-    }
+//    public void testUIElementsLogin() throws Exception {
+//        Button login = (Button) activity.findViewById(R.id.signinBtn);
+//        Button cancel = (Button) activity.findViewById(R.id.button9);
+//        mUserViewTesting = (TextView) activity.findViewById(R.id.username);
+//        mPasswordViewTesting = (TextView) activity.findViewById(R.id.password);
+//        assertEquals("Incorrect label", "Sign In", login.getText());
+//        assertEquals("Incorrect label", "Cancel", cancel.getText());
+//        assertEquals("Incorrect hint", "Username", mUserViewTesting.getHint());
+//        assertEquals("Incorrect hint", "Password", mPasswordViewTesting.getHint());
+//    }
 
     public void testCancel() throws Exception {
         Button cancel = (Button) activity.findViewById(R.id.button9);
@@ -57,6 +54,32 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<Login> {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {assertTrue(activity.isFinishing()); }
+        }, 1200);
+    }
+
+    public void testLoginGood() throws  Exception {
+        Button login = (Button) activity.findViewById(R.id.signinBtn);
+        ((ShoppingWithFriends) activity.getApplication()).addUser(new User("", "", "", ""));
+        TouchUtils.clickView(this, login);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {assertTrue(activity.isFinishing()); }
+        }, 1200);
+    }
+
+    public void testLoginFail() throws Exception {
+        Button login = (Button) activity.findViewById(R.id.signinBtn);
+        mUserViewTesting = (TextView) activity.findViewById(R.id.username);
+        mPasswordViewTesting = (TextView) activity.findViewById(R.id.password);
+
+        if (((ShoppingWithFriends) activity.getApplication()).getUsers().get("") != null) {
+            ((ShoppingWithFriends) activity.getApplication()).getUsers().remove("");
+        }
+
+        TouchUtils.clickView(this, login);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {assertFalse(activity.isFinishing()); }
         }, 1200);
     }
 }
