@@ -3,22 +3,20 @@ package willcode4money.cs2340.gatech.edu.shoppingwithfriends;
 import android.os.Handler;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
-import android.view.KeyEvent;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Map;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Login;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
-import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Register;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
 
 /**
- * Created by JakeWilliams on 3/27/2015.
+ * Tests user login
+ * Jake Williams
  */
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<Login> {
 

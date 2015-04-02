@@ -14,9 +14,9 @@ import edu.gatech.cs2340.willcode4money.shoppingwithfriends.Register;
  * Tests new user Registration.
  * Kyle Rabago-Banjo
  */
-public class ApplicationTest extends ActivityInstrumentationTestCase2<Register> {
+public class RegistrationTest extends ActivityInstrumentationTestCase2<Register> {
 
-    public ApplicationTest() {
+    public RegistrationTest() {
         super(Register.class);
     }
 
