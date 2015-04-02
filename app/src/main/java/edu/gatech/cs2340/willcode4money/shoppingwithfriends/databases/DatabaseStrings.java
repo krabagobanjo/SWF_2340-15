@@ -12,7 +12,7 @@ abstract class DatabaseStrings implements BaseColumns {
     public abstract class UserStrings {
 
         //Constant values
-        public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 2;
         public static final String DATABASE_NAME = "RegisteredUsers.db";
         public static final String TABLE_NAME = "users";
         public static final String COLUMN_NAME_ID = "username";
@@ -41,7 +41,7 @@ abstract class DatabaseStrings implements BaseColumns {
 
         //Constant values
         public static final String DATABASE_NAME = "Requests.db";
-        public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 2;
         public static final String TABLE_NAME = "requests";
         public static final String COLUMN_NAME_USER = "user";
         public static final String COLUMN_NAME_ITEM = "item";
@@ -66,7 +66,7 @@ abstract class DatabaseStrings implements BaseColumns {
 
         //Constant values
         public static final String DATABASE_NAME = "ReportedSales.db";
-        public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 2;
 
         public static final String TABLE_NAME = "reports";
         public static final String COLUMN_NAME_ITEM = "item";
