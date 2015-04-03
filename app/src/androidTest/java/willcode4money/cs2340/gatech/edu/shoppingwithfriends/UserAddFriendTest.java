@@ -86,6 +86,12 @@ public class UserAddFriendTest extends ActivityInstrumentationTestCase2<AddFrien
                     } // end of anonymous Runnable object instantiation
             );
             this.sendKeys(KeyEvent.KEYCODE_K);
+            this.sendKeys(KeyEvent.KEYCODE_AT);
+            this.sendKeys(KeyEvent.KEYCODE_K);
+            this.sendKeys(KeyEvent.KEYCODE_PERIOD);
+            this.sendKeys(KeyEvent.KEYCODE_C);
+            this.sendKeys(KeyEvent.KEYCODE_O);
+            this.sendKeys(KeyEvent.KEYCODE_M);
         }
 
         if (((ShoppingWithFriends) activity.getApplication()).getUsers().get("k") !=  null &&

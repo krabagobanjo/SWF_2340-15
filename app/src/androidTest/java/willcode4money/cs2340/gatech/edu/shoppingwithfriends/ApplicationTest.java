@@ -78,6 +78,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<Register> 
                     } // end of anonymous Runnable object instantiation
             );
             this.sendKeys(KeyEvent.KEYCODE_K);
+            this.sendKeys(KeyEvent.KEYCODE_AT);
+            this.sendKeys(KeyEvent.KEYCODE_K);
+            this.sendKeys(KeyEvent.KEYCODE_PERIOD);
+            this.sendKeys(KeyEvent.KEYCODE_C);
+            this.sendKeys(KeyEvent.KEYCODE_O);
+            this.sendKeys(KeyEvent.KEYCODE_M);
         }
 
         TouchUtils.clickView(this, reg);
@@ -106,6 +112,12 @@ public class ApplicationTest extends ActivityInstrumentationTestCase2<Register> 
             );
             if (t != pwc) {
                 this.sendKeys(KeyEvent.KEYCODE_K);
+                this.sendKeys(KeyEvent.KEYCODE_AT);
+                this.sendKeys(KeyEvent.KEYCODE_K);
+                this.sendKeys(KeyEvent.KEYCODE_PERIOD);
+                this.sendKeys(KeyEvent.KEYCODE_C);
+                this.sendKeys(KeyEvent.KEYCODE_O);
+                this.sendKeys(KeyEvent.KEYCODE_M);
             } else {
                 this.sendKeys(KeyEvent.KEYCODE_A);
             }
