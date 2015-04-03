@@ -7,9 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Gives information about a reported sale
+ */
 public class SaleInfo extends Activity {
-    private String loCation;
+    private String location;
 
+    /**
+     * Displays sale report information
+     * @param savedInstanceState - saved information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +35,13 @@ public class SaleInfo extends Activity {
         price.setText("Price: " + Report.getPrice());
         location.setText("Location: " + Report.getLocation());
 
-        loCation = Report.getLocation();
+        this.location = Report.getLocation();
         final Activity thisItem = this;
         final Button button = (Button) findViewById(R.id.GoogleMap);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(thisItem, MapsActivity.class);
-                intent.putExtra("Location_info", loCation);
+                intent.putExtra("Location_info", SaleInfo.this.location);
                 startActivity(intent);
             }
         });

@@ -25,6 +25,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+ /**
+  * Displays a map showing where sales are
+  */
  public class MapsActivity extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener
 {
 
@@ -40,7 +43,10 @@ import java.util.Locale;
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private String loCation;
 
-
+    /**
+     * Creates the map activity to display
+     * @param savedInstanceState - saved information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +70,7 @@ import java.util.Locale;
         mGoogleApiClient = new GoogleApiClient.Builder(this).addConnectionCallbacks(this).addOnConnectionFailedListener(this).addApi(LocationServices.API).build();
         mLocationRequest = LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).setInterval(10 * 1000).setFastestInterval(1000);
     }
+
     /**
      * Resume the map activity
      */
@@ -73,6 +80,7 @@ import java.util.Locale;
         setUpMapIfNeeded();
         mGoogleApiClient.connect();
     }
+
     /**
      * Pause the connection
      */
@@ -184,6 +192,7 @@ import java.util.Locale;
     @Override
     public void onConnectionSuspended(int i) {
     }
+
     /**
      * This is called when location is changed.
      * Then call handleNewLocation method
@@ -243,6 +252,7 @@ import java.util.Locale;
             handleNewLocation(location);
         }
     }
+
     /**
      * Called when {@code mGoogleApiClient} is trying to connect but failed.
      * Handle {@code result.getResolution()} if there is a resolution

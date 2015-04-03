@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 
 /**
- * user's requested item list with price
+ * User's requested item list with price
  */
 public class ViewReports extends Activity {
 

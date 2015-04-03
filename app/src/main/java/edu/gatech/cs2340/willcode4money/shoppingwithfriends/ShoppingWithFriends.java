@@ -37,6 +37,10 @@ public class ShoppingWithFriends extends Application {
         Log.d("[DATABASE]", "Done reading!");
     }
 
+    /**
+     * Gets the reports that exist
+     * @return a Map of Sale Reports
+     */
     public Map<String, List<SaleReport>> getReportBucket() {
         return reportMap;
     }

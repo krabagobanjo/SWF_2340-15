@@ -20,12 +20,6 @@ public class SaleReport extends Activity implements Serializable {
     //Temporary fix..
     private String location;
 
-    public SaleReport() {
-        owner = "";
-        item = "";
-        location = "";
-    }
-
     public SaleReport(String owner, String item, double price, String location) {
         this.owner = owner;
         this.item = item;
@@ -34,6 +28,13 @@ public class SaleReport extends Activity implements Serializable {
         this.location = location;
     }
 
+    public SaleReport() {
+        this("", "", 0.0, "");
+    }
+    /**
+     * Creates the activity to add requests
+     * @param savedInstanceState - Saved information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +86,10 @@ public class SaleReport extends Activity implements Serializable {
         finish();
     }
 
+    /**
+     * Cancels adding a SaleReport
+     * @param view - the "cancel" button
+     */
     public void cancel(View view) {
         finish();
     }
@@ -121,11 +126,20 @@ public class SaleReport extends Activity implements Serializable {
         return owner;
     }
 
+    /**
+     * Returns a string representation of this object
+     * @return - a string representing this SaleReport
+     */
     @Override
     public String toString() {
         return item + " @ $" + price + " located at: " + location + " posted by: " + owner;
     }
 
+    /**
+     * Determines if two Objects are equal
+     * @param other - another Object(SaleReport)
+     * @return true if equal, false otherwise
+     */
     @Override
     public boolean equals(Object other) {
         if (null == other) {

@@ -152,10 +152,18 @@ public class User implements Serializable {
      */
     public List<Integer> getRatingsList() { return ratings; }
 
+    /**
+     * Sets the user's friends list
+     * @param friends - a list of Users to set the list to
+     */
     public void setFriends(List<User> friends) {
         this.friends = friends;
     }
 
+    /**
+     * Sets the user's requests list
+     * @param requests - a list of SaleRequests to set the list to
+     */
     public void setRequests(List<SaleRequest> requests) {
         this.requests = requests;
     }
@@ -183,6 +191,11 @@ public class User implements Serializable {
                 && this.getEmail().equals(tempUser.getEmail()));
     }
 
+    /**
+     * Returns a string representation of the user
+     * @return a string representing the user
+     */
+    @Override
     public String toString() {
         return name + "\n" + email + "\n" + this.getRating() + "\n" + this.getNumSaleReports();
     }

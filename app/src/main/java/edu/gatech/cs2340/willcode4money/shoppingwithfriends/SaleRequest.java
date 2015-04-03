@@ -15,18 +15,17 @@ import java.io.Serializable;
 public class SaleRequest extends Activity implements Serializable {
     private final String owner;
     private final String item;
-    private double maxPrice;
-
+    private final double maxPrice;
     private String currUser;
-    public SaleRequest() {
-        owner = currUser;
-        item = null;
-    }
 
     public SaleRequest(String owner, String item, double maxPrice) {
         this.owner = owner;
         this.item = item;
         this.maxPrice = maxPrice;
+    }
+
+    public SaleRequest() {
+        this("", "", 0.0);
     }
 
     @Override
@@ -59,6 +58,10 @@ public class SaleRequest extends Activity implements Serializable {
         ((ShoppingWithFriends) this.getApplication()).save();
     }
 
+    /**
+     * Cancels adding the sale request
+     * @param view - the "cancel" button
+     */
     public void cancel(View view) {
         finish();
     }
@@ -87,6 +90,10 @@ public class SaleRequest extends Activity implements Serializable {
         return maxPrice;
     }
 
+    /**
+     * Returns a string representation of the Sale Request
+     * @return - a string representing this object
+     */
     @Override
     public String toString() {
         return getOwner() + ": " + getItem() + " @ $" + getMaxPrice();
