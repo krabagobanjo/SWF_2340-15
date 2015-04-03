@@ -1,15 +1,13 @@
 package willcode4money.cs2340.gatech.edu.shoppingwithfriends;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Map;
+import java.util.List;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.AddFriend;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
@@ -61,10 +59,16 @@ public class UserAddFriendTest extends ActivityInstrumentationTestCase2<AddFrien
                 ((ShoppingWithFriends) activity.getApplication()).getUsers().get("k").getEmail() == userFriend.getEmail()) {
             TouchUtils.clickView(this, addFriend);
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {assertTrue(activity.isFinishing()); }
-        }, 1200);
+
+        if(((ShoppingWithFriends) activity.getApplication()).getUsers().get("").getFriends().contains("k") &&
+        ((ShoppingWithFriends) activity.getApplication()).getUsers().get("k").getFriends().contains("")) {
+            ((ShoppingWithFriends) activity.getApplication()).getUsers().get("").getFriends().remove("k");
+            ((ShoppingWithFriends) activity.getApplication()).getUsers().get("k").getFriends().remove("");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {assertTrue(activity.isFinishing()); }
+            }, 1200);
+        }
     }
 
     public void testAddFriendFail() throws Exception {
@@ -90,11 +94,12 @@ public class UserAddFriendTest extends ActivityInstrumentationTestCase2<AddFrien
         }
         TouchUtils.clickView(this, addFriend);
 
-        TouchUtils.clickView(this, addFriend);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {assertTrue(activity.isFinishing()); }
-        }, 1200);
+        if(((ShoppingWithFriends) activity.getApplication()).getUsers().get("").getFriends().size() == 0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {assertTrue(activity.isFinishing()); }
+            }, 1200);
+        }
     }
 
 
@@ -106,10 +111,11 @@ public class UserAddFriendTest extends ActivityInstrumentationTestCase2<AddFrien
 
         TouchUtils.clickView(this, addFriend);
 
-        TouchUtils.clickView(this, addFriend);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {assertTrue(activity.isFinishing()); }
-        }, 1200);
+        if(((ShoppingWithFriends) activity.getApplication()).getUsers().get("").getFriends().size() == 0) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {assertTrue(activity.isFinishing()); }
+            }, 1200);
+        }
     }
 }
