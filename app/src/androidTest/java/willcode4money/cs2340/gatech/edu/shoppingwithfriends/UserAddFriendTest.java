@@ -7,8 +7,6 @@ import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.List;
-
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.AddFriend;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;

@@ -35,7 +35,7 @@ public class UsersDBTest extends ApplicationTestCase<ShoppingWithFriends> {
     /**
      * Tests that the database can handle 1000 Users
      */
-/*    public void testSaveUser() {
+    public void testSaveUser() {
         List<User> users = new ArrayList<User>();
         java.util.Random r = new java.util.Random();
         for (int i = 0; i < 1000; i++) {
@@ -73,11 +73,11 @@ public class UsersDBTest extends ApplicationTestCase<ShoppingWithFriends> {
     /**
      * Tests that data is saved correctly if info is missing
      */
- /*   public void testEmptyData() {
+    public void testEmptyData() {
         User user = new User("user", "","","");
         usersDB.saveUser(usersDB.getWritableDatabase(), user);
         Map<String, User> users = usersDB.readUsers();
         User other = users.get(users.keySet().toArray(new String[1])[0]); //I'm so sorry for writing this in one line
         assertEquals("Data not correct", user.toString(), other.toString());
-    }*/
+    }
 }
