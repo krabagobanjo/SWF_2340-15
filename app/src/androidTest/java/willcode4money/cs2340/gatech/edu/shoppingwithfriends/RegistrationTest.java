@@ -119,7 +119,7 @@ public class RegistrationTest extends ActivityInstrumentationTestCase2<Register>
                 this.sendKeys(KeyEvent.KEYCODE_O);
                 this.sendKeys(KeyEvent.KEYCODE_M);
             } else {
-                this.sendKeys(KeyEvent.KEYCODE_K);
+                this.sendKeys(KeyEvent.KEYCODE_A);
             }
         }
 
