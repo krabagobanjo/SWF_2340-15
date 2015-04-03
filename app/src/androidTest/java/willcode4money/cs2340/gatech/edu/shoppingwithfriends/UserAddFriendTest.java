@@ -101,21 +101,4 @@ public class UserAddFriendTest extends ActivityInstrumentationTestCase2<AddFrien
             }, 1200);
         }
     }
-
-
-    public void testNoInput() throws Exception {
-        Button addFriend = (Button) activity.findViewById(R.id.button4);
-        friendName = (TextView) activity.findViewById(R.id.addFriend_name);
-        friendEmail = (TextView) activity.findViewById(R.id.addFriend_email);
-        TextView[] arr = {friendName, friendEmail};
-
-        TouchUtils.clickView(this, addFriend);
-
-        if(((ShoppingWithFriends) activity.getApplication()).getUsers().get("").getFriends().size() == 0) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {assertTrue(activity.isFinishing()); }
-            }, 1200);
-        }
-    }
 }
