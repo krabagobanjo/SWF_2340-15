@@ -1,0 +1,115 @@
+package willcode4money.cs2340.gatech.edu.shoppingwithfriends;
+
+import android.content.Intent;
+import android.os.Handler;
+import android.test.ActivityInstrumentationTestCase2;
+import android.test.TouchUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.Map;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.AddFriend;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
+
+
+/**
+ * Tests user addFriend
+ * Hanbeen Kim
+ */
+public class UserAddFriendTest extends ActivityInstrumentationTestCase2<AddFriend> {
+
+    public UserAddFriendTest() {
+        super(AddFriend.class);
+    }
+
+    private AddFriend activity;
+    TextView friendName;
+    TextView friendEmail;
+
+    protected void setUp() throws Exception {
+        super.setUp();
+        setActivityInitialTouchMode(false);
+        activity = getActivity();
+    }
+
+
+    public void testAddFriendGood() throws  Exception {
+        Button addFriend = (Button) activity.findViewById(R.id.button4);
+        friendName = (TextView) activity.findViewById(R.id.addFriend_name);
+        friendEmail = (TextView) activity.findViewById(R.id.addFriend_email);
+        TextView[] arr = {friendName, friendEmail};
+
+        User userFriend = new User("k","k","k","k");
+
+        for (final TextView t : arr) {
+            activity.runOnUiThread(
+                    new Runnable() {
+                        public void run() {
+                            t.requestFocus();
+                        } // end of run() method definition
+                    } // end of anonymous Runnable object instantiation
+            );
+            this.sendKeys(KeyEvent.KEYCODE_K);
+        }
+
+        if (((ShoppingWithFriends) activity.getApplication()).getUsers().get("k") ==  userFriend &&
+                ((ShoppingWithFriends) activity.getApplication()).getUsers().get("k").getEmail() == userFriend.getEmail()) {
+            TouchUtils.clickView(this, addFriend);
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {assertTrue(activity.isFinishing()); }
+        }, 1200);
+    }
+
+    public void testAddFriendFail() throws Exception {
+        Button addFriend = (Button) activity.findViewById(R.id.button4);
+        friendName = (TextView) activity.findViewById(R.id.addFriend_name);
+        friendEmail = (TextView) activity.findViewById(R.id.addFriend_email);
+        TextView[] arr = {friendName, friendEmail};
+
+        for (final TextView t : arr) {
+            activity.runOnUiThread(
+                    new Runnable() {
+                        public void run() {
+                            t.requestFocus();
+                        } // end of run() method definition
+                    } // end of anonymous Runnable object instantiation
+            );
+            this.sendKeys(KeyEvent.KEYCODE_K);
+        }
+
+        if (((ShoppingWithFriends) activity.getApplication()).getUsers().get("k") !=  null &&
+                ((ShoppingWithFriends) activity.getApplication()).getUsers().get("k").getEmail() != null) {
+            ((ShoppingWithFriends) activity.getApplication()).getUsers().remove("k");
+        }
+        TouchUtils.clickView(this, addFriend);
+
+        TouchUtils.clickView(this, addFriend);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {assertTrue(activity.isFinishing()); }
+        }, 1200);
+    }
+
+
+    public void testNoInput() throws Exception {
+        Button addFriend = (Button) activity.findViewById(R.id.button4);
+        friendName = (TextView) activity.findViewById(R.id.addFriend_name);
+        friendEmail = (TextView) activity.findViewById(R.id.addFriend_email);
+        TextView[] arr = {friendName, friendEmail};
+
+        TouchUtils.clickView(this, addFriend);
+
+        TouchUtils.clickView(this, addFriend);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {assertTrue(activity.isFinishing()); }
+        }, 1200);
+    }
+}
