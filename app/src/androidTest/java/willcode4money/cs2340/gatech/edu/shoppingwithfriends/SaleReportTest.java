@@ -51,15 +51,6 @@ public class SaleReportTest extends ActivityInstrumentationTestCase2<SaleReport>
         assertEquals("Incorrect hint", "Location", Location.getHint());
     }
 
-    public void testEmptySpace() throws Exception {
-        ADD = (Button) activity.findViewById(R.id.reportBtn);
-        TouchUtils.clickView(this, ADD);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() { assertTrue(activity.isFinishing()); }
-        }, 1200);
-    }
-
     public void testCancel() throws Exception{
         CAN = (Button) activity.findViewById(R.id.cancelBtn);
         TouchUtils.clickView(this, CAN);
