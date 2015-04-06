@@ -5,10 +5,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
- * user's requested item list with price
+ * User's requested item list with price
  */
 public class ViewItems extends Activity {
 
@@ -24,11 +23,10 @@ public class ViewItems extends Activity {
         }
         Object[] requestArray = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getRequests().toArray();
         String[] itemsList = new String[requestArray.length];
-        double[] priceList = new double[requestArray.length];
         for (int i = 0; i < requestArray.length; i++) {
             itemsList[i] = requestArray[i].toString();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, itemsList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, itemsList);
         ListView listview = (ListView) findViewById(R.id.item_list);
         listview.setAdapter(adapter);
     }

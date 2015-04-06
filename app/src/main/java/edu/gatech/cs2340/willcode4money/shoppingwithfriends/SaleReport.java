@@ -1,16 +1,14 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import java.io.Serializable;
+import java.util.ArrayList;
+
 
 /**
  * Report of sales found by users.
@@ -21,14 +19,6 @@ public class SaleReport extends Activity implements Serializable {
     private double price;
     //Temporary fix..
     private String location;
-    //private Location location;
-    private String currUser;
-
-    public SaleReport() {
-        owner = "";
-        item = "";
-        location = "";
-    }
 
     public SaleReport(String owner, String item, double price, String location) {
         this.owner = owner;
@@ -38,14 +28,25 @@ public class SaleReport extends Activity implements Serializable {
         this.location = location;
     }
 
+    public SaleReport() {
+        this("", "", 0.0, "");
+    }
+    /**
+     * Creates the activity to add requests
+     * @param savedInstanceState - Saved information
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale_report);
-        currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
+        String currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
         if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
     }
 
+    /**
+     * Creates a sale report based on user data
+     * @param view - the button pressed
+     */
     public void makeReport(View view) {
         EditText input1 = (EditText) findViewById(R.id.itemReport);
         EditText input2 = (EditText) findViewById(R.id.priceReport);
@@ -62,14 +63,14 @@ public class SaleReport extends Activity implements Serializable {
         }
 
 
-        if (itemReported != "" && locationReported != "") {
+        if (!itemReported.equals("") && !locationReported.equals("")) {
             this.price = priceReported;
             this.item = itemReported;
             this.location = locationReported;
             if (((ShoppingWithFriends) this.getApplication()).getReportBucket().containsKey(this.item)) {
                 ((ShoppingWithFriends) this.getApplication()).getReportBucket().get(this.item).add(this);
             } else {
-                ArrayList<SaleReport> newBucket = new ArrayList<SaleReport>();
+                ArrayList<SaleReport> newBucket = new ArrayList<>();
                 newBucket.add(this);
                 ((ShoppingWithFriends) this.getApplication()).getReportBucket().put(this.item, newBucket);
             }
@@ -85,6 +86,10 @@ public class SaleReport extends Activity implements Serializable {
         finish();
     }
 
+    /**
+     * Cancels adding a SaleReport
+     * @param view - the "cancel" button
+     */
     public void cancel(View view) {
         finish();
     }
@@ -106,27 +111,11 @@ public class SaleReport extends Activity implements Serializable {
     }
 
     /**
-     * Updates the price of the reported item
-     * @param price the new price of the reported item
-     */
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    /**
      * gets the location
      * @return the location
      */
     public String getLocation() {
         return location;
-    }
-
-    /**
-     * sets the location
-     * @param location the new location
-     */
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     /**
@@ -138,19 +127,19 @@ public class SaleReport extends Activity implements Serializable {
     }
 
     /**
-     * sets the owner
-     * @param owner
+     * Returns a string representation of this object
+     * @return - a string representing this SaleReport
      */
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     @Override
     public String toString() {
-        String a = item + " @ $" + price + " located at: " + location + " posted by: " + owner;
-        return a;
+        return item + " @ $" + price + " located at: " + location + " posted by: " + owner;
     }
 
+    /**
+     * Determines if two Objects are equal
+     * @param other - another Object(SaleReport)
+     * @return true if equal, false otherwise
+     */
     @Override
     public boolean equals(Object other) {
         if (null == other) {

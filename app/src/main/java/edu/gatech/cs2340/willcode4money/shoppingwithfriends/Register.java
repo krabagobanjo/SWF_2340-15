@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Map;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * Implementation of user registration.
@@ -22,7 +20,6 @@ public class Register extends Activity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private EditText passwordConfirmEditText;
-    private TextView infoTextView;
 
     /**
      * Initializes the page with text fields and buttons

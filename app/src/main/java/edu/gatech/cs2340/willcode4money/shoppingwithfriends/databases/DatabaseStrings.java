@@ -5,14 +5,14 @@ import android.provider.BaseColumns;
 /**
  * A class to contain constant values used by the databases in this application.
  */
-class DatabaseStrings implements BaseColumns {
+abstract class DatabaseStrings implements BaseColumns {
     /**
      * Contains values required by the UserDBHelper
      */
-    public interface UserStrings {
+    public abstract class UserStrings {
 
         //Constant values
-        public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 2;
         public static final String DATABASE_NAME = "RegisteredUsers.db";
         public static final String TABLE_NAME = "users";
         public static final String COLUMN_NAME_ID = "username";
@@ -32,19 +32,16 @@ class DatabaseStrings implements BaseColumns {
 
         //DROP TABLE IF EXISTS users;
         public static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
-
-        //Delete all entries from table: DELETE FROM users
-        public static final String DELETE_ALL = "DELETE FROM " + TABLE_NAME;
     }
 
     /**
      * Contains values required by the RequestsDBHelper
      */
-    public interface RequestStrings {
+    public abstract class RequestStrings {
 
         //Constant values
         public static final String DATABASE_NAME = "Requests.db";
-        public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 2;
         public static final String TABLE_NAME = "requests";
         public static final String COLUMN_NAME_USER = "user";
         public static final String COLUMN_NAME_ITEM = "item";
@@ -65,18 +62,25 @@ class DatabaseStrings implements BaseColumns {
     /**
      * Contains values required by the ReportedDBHelper
      */
-    public interface ReportStrings {
+    public abstract class ReportStrings {
 
         //Constant values
         public static final String DATABASE_NAME = "ReportedSales.db";
-        public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 2;
 
         public static final String TABLE_NAME = "reports";
+        public static final String COLUMN_NAME_ITEM = "item";
+        public static final String COLUMN_NAME_OWNER = "owner";
+        public static final String COLUMN_NAME_PRICE = "price";
+        public static final String COLUMN_NAME_LOCATION = "location";
 
         //CREATE TABLE reports(_ID TEXT PRIMARY KEY,user TEXT
-        public static final String CREATE_TABLE = "";
+        public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
+                "(_ID TEXT PRIMARY KEY, " + COLUMN_NAME_ITEM + " TEXT, " +
+                COLUMN_NAME_OWNER + " TEXT, " + COLUMN_NAME_PRICE + " TEXT, " +
+                COLUMN_NAME_LOCATION + " TEXT)";
 
-        //DROP TABLE IF EXISTS users;
+        //DROP TABLE IF EXISTS reports;
         public static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
         //Delete all entries from table: DELETE FROM reports

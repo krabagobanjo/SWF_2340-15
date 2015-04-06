@@ -4,11 +4,9 @@
     <string name="app_name">Shopping With Friends</string>
     <string name="app_name_excite">Shopping With Friends!</string>
     <string name="team">Team 39: Will Code For Money</string>
-    <string name="return_to_login">Go Back to Login</string>
     <string name="title_activity_main">Home</string>
     <string name="register">Register</string>
     <string name="title_activity_add_friend">Add Friend</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_view_friends">View Friends</string>
     <string name="prompt_name">Name</string>
     <string name="prompt_email">Email Address</string>
@@ -30,5 +28,21 @@
     <string name="prompt_location">Location</string>
     <string name="title_activity_view_reports">View Reports</string>
     <string name="title_activity_recover_password">Recover Password</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="Name">Name</string>
+    <string name="Hybrid">Hybrid</string>
+    <string name="Email">E-mail</string>
+    <string name="Item">Item</string>
+    <string name="Satellite">Satellite</string>
+    <string name="Rating">Rating</string>
+    <string name="Price">Price</string>
+    <string name="Terrain">Terrain</string>
+    <string name="sales">#sales</string>
+    <string name="Location">Location</string>
+    <string name="None">None</string>
+    <string name="Name2">Name</string>
+    <string name="GoogleMap">View the location on Google map</string>
+    <string name="title_activity_item_list">Item List</string>
+    <string name="title_activity_report_list">Report List</string>
 
 </resources>

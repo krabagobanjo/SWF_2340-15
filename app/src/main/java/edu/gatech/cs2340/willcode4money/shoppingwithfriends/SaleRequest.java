@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * Contains a request made by a user for certain items
@@ -16,18 +15,17 @@ import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 public class SaleRequest extends Activity implements Serializable {
     private final String owner;
     private final String item;
-    private double maxPrice;
-
+    private final double maxPrice;
     private String currUser;
-    public SaleRequest() {
-        owner = currUser;
-        item = null;
-    }
 
     public SaleRequest(String owner, String item, double maxPrice) {
         this.owner = owner;
         this.item = item;
         this.maxPrice = maxPrice;
+    }
+
+    public SaleRequest() {
+        this("", "", 0.0);
     }
 
     @Override
@@ -60,6 +58,10 @@ public class SaleRequest extends Activity implements Serializable {
         ((ShoppingWithFriends) this.getApplication()).save();
     }
 
+    /**
+     * Cancels adding the sale request
+     * @param view - the "cancel" button
+     */
     public void cancel(View view) {
         finish();
     }
@@ -89,17 +91,11 @@ public class SaleRequest extends Activity implements Serializable {
     }
 
     /**
-     * Updates the max. price the owner is looking for
-     * @param maxPrice the new price of the requested item
+     * Returns a string representation of the Sale Request
+     * @return - a string representing this object
      */
-    public void setMaxPrice(double maxPrice) {
-        this.maxPrice = maxPrice;
-        ((ShoppingWithFriends) this.getApplication()).save();
-    }
-
     @Override
     public String toString() {
-        String a = getOwner() + ": " + getItem() + " @ $" + getMaxPrice();
-        return a;
+        return getOwner() + ": " + getItem() + " @ $" + getMaxPrice();
     }
 }

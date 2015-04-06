@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * The user's friends list.
@@ -38,7 +37,7 @@ public class ViewFriend extends Activity {
             friendsList[i] = ((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getFriends().get(i);
             listName[i] = friendsList[i].getName();
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, listName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item, listName);
         ListView listview = (ListView) findViewById(R.id.friends_list);
         listview.setAdapter(adapter);
         registerForContextMenu(listview);
@@ -46,9 +45,7 @@ public class ViewFriend extends Activity {
         final Activity thisItem = this;
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parentAdapter, View view, int position, long id) {
-               /* TextView clickedFriend = (TextView) view;
-                Toast.makeText(getApplicationContext(), "Friend [" + clickedFriend.getText() + "]",
-                        Toast.LENGTH_SHORT).show();*/
+                index = (int) id;
                 Intent intent = new Intent(thisItem, DetailInfo.class);
                 intent.putExtra("friend_info",friendsList[index]);
                 startActivity(intent);
@@ -64,7 +61,7 @@ public class ViewFriend extends Activity {
     }
 
     /**
-     * Creates and displays the contextmenu for options
+     * Creates and displays the context menu for options
      *
      * @param menu     The context menu that is built.
      * @param v        The view of the context menu

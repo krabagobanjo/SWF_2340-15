@@ -1,9 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
+             style="@style/AppTheme"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="#ffffff"
-             tools:context="edu.gatech.cs2340.willcode4money.shoppingwithfriends.MainActivity">
+             tools:context="edu.gatech.cs2340.willcode4money.shoppingwithfriends.MainActivity" >
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/action_sign_in"
         android:id="@+id/sign_in"
-        android:layout_gravity="left|bottom"
+        android:layout_gravity="start|bottom"
         android:onClick="buttonPressed"
         android:textColor="#000000"/>
 

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * The home screen after login.
@@ -18,7 +17,7 @@ public class MainScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
         currUser = ((ShoppingWithFriends) this.getApplication()).getCurrentUser();
-        if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
+        //if (!((ShoppingWithFriends) this.getApplication()).getUsers().get(currUser).getAuth()) finish();
 
         if (!((ShoppingWithFriends) this.getApplication()).getValidReports().isEmpty()) {
             Toast.makeText(getApplicationContext(), "You have Reports!",

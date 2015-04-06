@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.Map;
 
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.R;
 
 /**
  * A login screen that offers login via username/password.

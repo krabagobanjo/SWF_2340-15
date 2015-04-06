@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.SaleReport;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
@@ -24,8 +25,8 @@ import static edu.gatech.cs2340.willcode4money.shoppingwithfriends.databases.Dat
 public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
 
     //Databases holding reported sales and item requests
-    private ReportedDBHelper reportedDBhelper;
-    private RequestsDBHelper requestsDBhelper;
+    private final ReportedDBHelper reportedDBhelper;
+    private final RequestsDBHelper requestsDBhelper;
 
     public UserDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -55,22 +56,27 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     }
 
     /**
-     * Saves the user information to disk for persistence
+     * Saves the user and report information to disk for persistence
      * @param application - the Application to save
      */
     public void saveUsers(Application application) {
         Map<String, User> users = ((ShoppingWithFriends) application).getUsers();
+        Map<String, List<SaleReport>> reports = ((ShoppingWithFriends) application).getReportBucket();
         SQLiteDatabase db = this.getWritableDatabase();
         for (User user : users.values()) {
             this.saveUser(db, user);
         }
         db.close();
         requestsDBhelper.saveAllRequests(users);
-        reportedDBhelper.saveAllReports(users);
+        reportedDBhelper.saveAllReports(reports);
     }
 
-    //Saves the information for each user to disk.
-    private void saveUser(SQLiteDatabase db, User user) {
+    /**
+     * Saves the data for a specific user to the database
+     * @param db - the database to save to
+     * @param user - the user to save
+     */
+    public void saveUser(SQLiteDatabase db, User user) {
         //Save friends list as comma-separated string of usernames
         List<User> friends = user.getFriends();
         StringBuilder friendsList = new StringBuilder();
@@ -90,7 +96,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
             rate.append(",");
         }
         if (!ratings.isEmpty()) {
-            friendsList.deleteCharAt(friendsList.length() - 1);
+            rate.deleteCharAt(rate.length() - 1);
         }
         String ratingString = rate.toString();
 
@@ -110,13 +116,13 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
      * @return a map containing saved users from the disk
      */
     public Map<String, User> readUsers() {
-        Map<String, User> users = new HashMap<String, User>();
+        Map<String, User> users = new HashMap<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        String[] proj = {COLUMN_NAME_ID};
+        String[] projection = {COLUMN_NAME_ID};
         String sortOrder = COLUMN_NAME_ID + " DESC";
         Cursor c = db.query(
                 TABLE_NAME, //Name of table
-                proj, //Columns to return
+                projection, //Columns to return
                 null, //No selection criteria
                 null, //see above
                 null, //no grouping
@@ -135,9 +141,16 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         this.readFriends(db, users);
         this.readRatings(db, users);
         db.close();
-        reportedDBhelper.readAllReports(users);
         requestsDBhelper.readAllRequests(users);
         return users;
+    }
+
+    /**
+     * Reads report information from the disk
+     * @return the bucket of reports
+     */
+    public Map<String, List<SaleReport>> readReports() {
+        return reportedDBhelper.readAllReports();
     }
 
     //Reads the information for each user from disk.
@@ -145,7 +158,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         User user;
         String password, email, name;
 
-        String[] proj = {
+        String[] projection = {
                 COLUMN_NAME_PASSWORD,
                 COLUMN_NAME_NAME,
                 COLUMN_NAME_EMAIL,
@@ -154,7 +167,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
         String sortOrder = COLUMN_NAME_NAME + " DESC";
         Cursor c = db.query(
                 TABLE_NAME,
-                proj,
+                projection,
                 selection,
                 null,
                 null,
@@ -173,14 +186,14 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     //Reads the friends list of each user and reconstructs it.
     private void readFriends(SQLiteDatabase db, Map<String, User> users) {
         Set<String> usernames = users.keySet();
-        String[] proj = {COLUMN_NAME_FRIENDS};
+        String[] projection = {COLUMN_NAME_FRIENDS};
         String sortOrder = COLUMN_NAME_ID + " DESC";
         for (String username : usernames) {
             User user = users.get(username);
             String selection = COLUMN_NAME_ID + "='" + username + "'";
             Cursor c = db.query(
                     TABLE_NAME,
-                    proj,
+                    projection,
                     selection,
                     null,
                     null,
@@ -188,7 +201,7 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
                     sortOrder);
             c.moveToFirst();
             String[] friends = c.getString(0).split(",");
-            List<User> friendsList = new ArrayList<User>();
+            List<User> friendsList = new ArrayList<>();
             for (String friend : friends) {
                 if (friend.length() > 0) {
                     friendsList.add(users.get(friend));
@@ -202,14 +215,14 @@ public class UserDBHelper extends SQLiteOpenHelper implements BaseColumns {
     //Reads ratings information from the database and saves it to each user.
     private void readRatings(SQLiteDatabase db, Map<String, User> users) {
         Set<String> usernames = users.keySet();
-        String[] proj = {COLUMN_NAME_RATINGS};
+        String[] projection = {COLUMN_NAME_RATINGS};
         String sortOrder = COLUMN_NAME_ID + " DESC";
         for (String username : usernames) {
             User user = users.get(username);
             String selection = COLUMN_NAME_ID + "='" + username + "'";
             Cursor c = db.query(
                     TABLE_NAME,
-                    proj,
+                    projection,
                     selection,
                     null,
                     null,
