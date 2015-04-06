@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.email.MailSender;
-import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
+//import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * Allows the user to retrieve a lost password.
@@ -24,7 +23,6 @@ public class RecoverPassword extends Activity {
     private static ShoppingWithFriends thisApp;
 
     private EditText userBox;
-    private Button send;
     private ProgressBar circle;
     private TextView message;
 
@@ -37,7 +35,6 @@ public class RecoverPassword extends Activity {
         thisApp = ((ShoppingWithFriends) this.getApplication());
         setContentView(R.layout.activity_recover_password);
         userBox = (EditText) this.findViewById(R.id.recovery_user);
-        send = (Button) this.findViewById(R.id.send);
         circle = (ProgressBar) this.findViewById(R.id.progress);
         circle.setVisibility(View.GONE);
         message = (TextView) this.findViewById(R.id.recovery_message);

@@ -10,7 +10,7 @@ import java.util.List;
 public class User implements Serializable {
     private final String name;
     private final String username;
-    private final String password;
+    private String password;
     private final String email;
     private final List<Integer> ratings;
     private boolean authenticated;
@@ -93,6 +93,13 @@ public class User implements Serializable {
         return password;
     }
 
+    /**
+     * Sets the user's password
+     * @param pass - the new password
+     */
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
     /**
      * Returns the list of SaleRequests this user has made
      * @return a list of SaleRequests make by this user
