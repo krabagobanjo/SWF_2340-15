@@ -12,7 +12,6 @@ import android.widget.Toast;
 import java.util.Random;
 
 import edu.gatech.cs2340.willcode4money.shoppingwithfriends.email.MailSender;
-//import willcode4money.cs2340.gatech.edu.shoppingwithfriends.R;
 
 /**
  * Allows the user to retrieve a lost password.
@@ -46,6 +45,7 @@ public class RecoverPassword extends Activity {
      * @param view - the "send email" button
      */
     public void recover(View view) {
+        message.setVisibility(View.GONE);
         String username = userBox.getText().toString();
         User user = thisApp.getUsers().get(username);
         if (user == null) {
