@@ -47,27 +47,13 @@ public class RecoverPassword extends Activity {
             this.notFound();
             return;
         }
-        message.setText("Sending Email...");
-        message.setTextColor(Color.BLACK);
-        message.setVisibility(View.VISIBLE);
         String name = user.getName();
         String email = user.getEmail();
         String oldPass = user.getPassword();
         String password = this.getNewPassword();
         user.setPassword(password);
-        MailSender sender = new MailSender(USERNAME, PASSWORD);
-        boolean wasSent = sender.sendMail(name, email, password);
-        if (wasSent) {
-            thisApp.save();
-            message.setTextColor(Color.GREEN);
-            message.setText("Email sent. Check your inbox.");
-            message.setVisibility(View.VISIBLE);
-        } else {
-            user.setPassword(oldPass);
-            message.setText("Unable to send email. Are you online?");
-            message.setTextColor(Color.RED);
-            message.setVisibility(View.VISIBLE);
-        }
+        MailSender sender = new MailSender(message, thisApp, user, oldPass, USERNAME, PASSWORD);
+        sender.sendMail(name, email, password);
         userBox.setText("");
         userBox.requestFocus();
     }

@@ -1,7 +1,10 @@
 package edu.gatech.cs2340.willcode4money.shoppingwithfriends.email;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.Date;
 import java.util.Properties;
@@ -11,6 +14,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.ShoppingWithFriends;
+import edu.gatech.cs2340.willcode4money.shoppingwithfriends.User;
 
 /**
  * A class that sends an email message to allow users to recover their accounts.
@@ -26,11 +32,19 @@ public class MailSender extends AsyncTask<String, Void, Boolean> {
     private String subject = "Account Recovery for Shopping With Friends";
     private String body;
     private Session session;
+    private TextView message;
+    private ShoppingWithFriends thisApp;
+    private User thisUser;
+    private String oldPass;
 
-    public MailSender(String user, String password) {
+    public MailSender(TextView message, ShoppingWithFriends app, User thisUser, String oldPass, String user, String password) {
         super();
         this.user = user;
         this.password = password;
+        this.message = message;
+        this.thisApp = app;
+        this.thisUser = thisUser;
+        this.oldPass = oldPass;
 
         Properties props = System.getProperties();
         props.setProperty("mail.transport.protocol", "smtp");
@@ -49,13 +63,12 @@ public class MailSender extends AsyncTask<String, Void, Boolean> {
      * @param name - the name of the user
      * @param recipient - the user's email address
      * @param theirPass - the user's temporary password
-     * @return true if the message sent without problems; false otherwise
      */
-    public boolean sendMail(String name, String recipient, String theirPass) {
+    public synchronized void sendMail(String name, String recipient, String theirPass) {
         try {
-            return this.execute(name, recipient, theirPass).get();
+            this.execute(name, recipient, theirPass);
         } catch (Exception e) {
-            return false;
+            Log.d("[Yikes}", "Something happened with the emails");
         }
     }
 
@@ -104,5 +117,32 @@ public class MailSender extends AsyncTask<String, Void, Boolean> {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Lets the user know that the app is sending the email.
+     */
+    protected void onPreExecute() {
+        message.setText("Sending Email...");
+        message.setTextColor(Color.BLACK);
+        message.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Sets the message to the correct value.
+     * @param wasSent - Whether or not the email successfully sent
+     */
+    protected void onPostExecute(Boolean wasSent) {
+        if (wasSent) {
+            thisApp.save();
+            message.setTextColor(Color.GREEN);
+            message.setText("Email sent. Check your inbox.");
+            message.setVisibility(View.VISIBLE);
+        } else {
+            thisUser.setPassword(oldPass);
+            message.setText("Unable to send email. Are you online?");
+            message.setTextColor(Color.RED);
+            message.setVisibility(View.VISIBLE);
+        }
     }
 }
