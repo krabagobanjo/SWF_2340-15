@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Random;
 
@@ -22,7 +21,6 @@ public class RecoverPassword extends Activity {
     private static ShoppingWithFriends thisApp;
 
     private EditText userBox;
-    private ProgressBar circle;
     private TextView message;
 
     /**
@@ -34,8 +32,6 @@ public class RecoverPassword extends Activity {
         thisApp = ((ShoppingWithFriends) this.getApplication());
         setContentView(R.layout.activity_recover_password);
         userBox = (EditText) this.findViewById(R.id.recovery_user);
-        circle = (ProgressBar) this.findViewById(R.id.progress);
-        circle.setVisibility(View.GONE);
         message = (TextView) this.findViewById(R.id.recovery_message);
         message.setVisibility(View.GONE);
     }
@@ -58,11 +54,12 @@ public class RecoverPassword extends Activity {
         String password = this.getNewPassword();
         user.setPassword(password);
         MailSender sender = new MailSender(USERNAME, PASSWORD);
-        circle.setVisibility(View.VISIBLE);
         boolean wasSent = sender.sendMail(name, email, password);
-        circle.setVisibility(View.GONE);
         if (wasSent) {
             thisApp.save();
+            message.setTextColor(Color.GREEN);
+            message.setText("Email sent. Check your inbox.");
+            message.setVisibility(View.VISIBLE);
         } else {
             user.setPassword(oldPass);
             message.setText("Unable to send email. Are you online?");
@@ -87,15 +84,17 @@ public class RecoverPassword extends Activity {
         }
         symbols = tmp.toString().toCharArray();
         Random r = new Random();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             pass[i] = symbols[r.nextInt(symbols.length)];
         }
-        return new String(pass);
+        return String.valueOf(pass);
     }
 
     //Called when the username provided by the user is not registered
     private void notFound() {
-        Toast.makeText(this, "That user does not exist.", Toast.LENGTH_LONG).show();
+        message.setText("That user does not exist.");
+        message.setVisibility(View.VISIBLE);
+        message.setTextColor(Color.RED);
         userBox.setText("");
         userBox.requestFocus();
     }

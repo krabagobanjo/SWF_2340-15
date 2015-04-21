@@ -100,6 +100,7 @@ public class User implements Serializable {
     public void setPassword(String pass) {
         this.password = pass;
     }
+
     /**
      * Returns the list of SaleRequests this user has made
      * @return a list of SaleRequests make by this user
