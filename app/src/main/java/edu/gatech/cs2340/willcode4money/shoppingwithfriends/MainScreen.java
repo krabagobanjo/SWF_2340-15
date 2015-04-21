@@ -46,4 +46,6 @@ public class MainScreen extends Activity {
     public void viewReports(View view) { startActivity(new Intent(this, ViewReports.class)); }
 
     public void makeReport(View view) { startActivity(new Intent(this, SaleReport.class)); }
+
+    public void changePass(View view) { startActivity(new Intent(this, ChangePass.class)); }
 }

@@ -43,6 +43,8 @@
     <string name="Name2">Name</string>
     <string name="GoogleMap">View the location on Google map</string>
     <string name="title_activity_item_list">Item List</string>
+    <string name="title_activity_change_pass">Change Password</string>
     <string name="title_activity_report_list">Report List</string>
+    <string name="new_password">Enter your new password</string>
 
 </resources>

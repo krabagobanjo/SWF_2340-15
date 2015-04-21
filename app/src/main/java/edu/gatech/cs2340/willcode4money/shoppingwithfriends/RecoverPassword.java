@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -48,6 +47,9 @@ public class RecoverPassword extends Activity {
             this.notFound();
             return;
         }
+        message.setText("Sending Email...");
+        message.setTextColor(Color.BLACK);
+        message.setVisibility(View.VISIBLE);
         String name = user.getName();
         String email = user.getEmail();
         String oldPass = user.getPassword();
@@ -66,6 +68,8 @@ public class RecoverPassword extends Activity {
             message.setTextColor(Color.RED);
             message.setVisibility(View.VISIBLE);
         }
+        userBox.setText("");
+        userBox.requestFocus();
     }
 
     //Constructs a new, random password for the user.
